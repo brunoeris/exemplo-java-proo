@@ -20,6 +20,13 @@ public class Boletim {
 	public void setNota2(float nota2) {
 		this.nota2 = nota2;
 	}
+	public float getNotaFinal() {
+		return notaFinal;
+	}
+	public void setNotaFinal(float notaFinal) {
+		this.notaFinal = notaFinal;
+	}
+	
 	
 	
 
