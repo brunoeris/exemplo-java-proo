@@ -2,8 +2,8 @@ package br.ingles.curso;
 
 public class Aluno {
 	
-		private String nome;
-		private int matricula;
+		protected String nome;
+		protected int matricula;
 		
 		public Aluno(String nome, int matricula) {
 			super();
@@ -11,29 +11,11 @@ public class Aluno {
 			this.matricula = matricula;
 		}
 		
-				
-		public String getNome() {
-			return nome;
-		}
 		
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
-
-		public int getMatricula() {
-			return matricula;
-		}
-
-		public void setMatricula(int matricula) {
-			this.matricula = matricula;
-		}
-
-
 		public void imprimir(){
-			System.out.println("Nome: "+getNome());
-			System.out.println("Matricula: "+getMatricula());	
+			System.out.println("\nNome: "+this.nome);
+			System.out.println("Matricula: "+this.matricula);	
 		}
-		
-		
+			 
 
 }
