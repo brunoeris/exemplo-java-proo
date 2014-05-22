@@ -14,14 +14,13 @@ public class Boletim extends Aluno{
 		this.notaFinal = (this.nota1+this.nota2)/2;
 	}
 	
-	
 	public void imprimirBoletim(){
 		System.out.println("NOTAS");
 		System.out.println("Nome: "+super.nome);
 		System.out.println("Matricula: "+super.matricula);
-		System.out.println("Nota da primeira prova: "+this.nota1);
-		System.out.println("Nota da segunda prova: "+this.nota2);
-		System.out.println("\nMÉDIA FINAL: "+this.notaFinal);
+		System.out.println("Nota da primeira prova: "+getNota1());
+		System.out.println("Nota da segunda prova: "+getNota2());
+		System.out.println("\nMÉDIA FINAL: "+getNotaFinal());
 		
 	}
 	
