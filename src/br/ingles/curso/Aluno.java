@@ -1,4 +1,5 @@
 package br.ingles.curso;
+import javax.swing.JOptionPane;
 
 public class Aluno {
 	
@@ -11,8 +12,7 @@ public class Aluno {
 		}
 	
 		public void imprimir(){
-			System.out.println("\nNome: "+this.nome);
-			System.out.println("Matricula: "+this.matricula);	
+			JOptionPane.showMessageDialog(null, "Nome: "+this.nome+"\nMatricula: "+this.matricula);	
 		}
 		
 		public void excluirAluno(){
