@@ -52,7 +52,7 @@ public class Secretaria {
 				//procurarAluno();
 					
 					
-					System.out.println("Digite o nome a matricula do aluno que voce deseja encontrar: ");
+					System.out.println("Digite a matricula do aluno que voce deseja encontrar: ");
 					int procura = leitor.nextInt();
 					
 					if(procura == aluno.matricula){

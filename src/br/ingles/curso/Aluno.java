@@ -1,5 +1,4 @@
 package br.ingles.curso;
-import javax.swing.JOptionPane;
 
 public class Aluno {
 	
@@ -12,7 +11,8 @@ public class Aluno {
 		}
 	
 		public void imprimir(){
-			JOptionPane.showMessageDialog(null, "Nome: "+this.nome+"\nMatricula: "+this.matricula);	
+			System.out.println("\nNome: "+this.nome);
+			System.out.println("Matricula: "+this.matricula);	
 		}
 		
 		public void excluirAluno(){
@@ -20,8 +20,6 @@ public class Aluno {
 			this.matricula = 0;
 		}
 
-		//getters and setters
-		
 		public String getNome() {
 			return nome;
 		}
@@ -37,6 +35,9 @@ public class Aluno {
 		public void setMatricula(int matricula) {
 			this.matricula = matricula;
 		}
+		
+		//getters and setters
+		
 
 }
 		

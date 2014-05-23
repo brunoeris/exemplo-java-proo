@@ -6,7 +6,7 @@ public class Secretaria_GUI_beta {
 	public static void main(String[] args) {
 		
 
-		Aluno aluno = new Aluno("",0);
+		Aluno_GUI aluno = new Aluno_GUI("",0);
 		
 		Boletim boletim = new Boletim(aluno.nome, aluno.matricula, 0, 0);
 		
@@ -22,12 +22,10 @@ public class Secretaria_GUI_beta {
 			
 				case 1:
 				
-					String nome = JOptionPane.showInputDialog("Digite o nome: ");
-					aluno.setNome(nome);
+					aluno.nome = JOptionPane.showInputDialog("Digite o nome: ");
 					String matricula = JOptionPane.showInputDialog("Digite a matricula: ");
-					int matricula1 = Integer.parseInt(matricula);
-					aluno.setMatricula(matricula1);
-					System.out.print("\n");
+					aluno.matricula = Integer.parseInt(matricula);
+					
 				break;
 				
 				case 2:
@@ -35,7 +33,7 @@ public class Secretaria_GUI_beta {
 					
 					int procurar;
 					
-					String procura = JOptionPane.showInputDialog("Digite o nome a matricula do aluno que voce deseja encontrar: ");
+					String procura = JOptionPane.showInputDialog("Digite a matricula do aluno que voce deseja encontrar: ");
 					procurar = Integer.parseInt(procura);
 					
 					if(procurar == aluno.matricula){

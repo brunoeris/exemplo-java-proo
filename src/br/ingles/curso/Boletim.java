@@ -1,5 +1,4 @@
 package br.ingles.curso;
-import javax.swing.JOptionPane;
 
 public class Boletim extends Aluno{
 	
@@ -16,7 +15,12 @@ public class Boletim extends Aluno{
 	}
 	
 	public void imprimirBoletim(){
-		JOptionPane.showMessageDialog(null,"NOTAS\nNome: "+super.nome+"\nMatricula: "+super.matricula+"\nNota da primeira prova: "+getNota1()+"\nNota da segunda prova: "+getNota2()+"\n\nMÉDIA FINAL: "+getNotaFinal());
+		System.out.println("NOTAS");
+		System.out.println("Nome: "+super.nome);
+		System.out.println("Matricula: "+super.matricula);
+		System.out.println("Nota da primeira prova: "+getNota1());
+		System.out.println("Nota da segunda prova: "+getNota2());
+		System.out.println("\nMÉDIA FINAL: "+getNotaFinal());
 		
 	}
 	
