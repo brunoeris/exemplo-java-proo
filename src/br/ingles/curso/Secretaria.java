@@ -79,7 +79,7 @@ public class Secretaria {
 				break;
 				
 				case 4:
-				//editarNotas()
+				//veditarNotas()
 					System.out.println("Digite o nome do aluno que voce deseja editar a nota: ");
 					procura = leitor.nextInt();
 					
