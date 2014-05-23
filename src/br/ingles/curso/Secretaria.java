@@ -26,7 +26,7 @@ public class Secretaria {
 			System.out.println("2- PARA PROCURAR UM ALUNO");
 			System.out.println("3- PARA INSERIR NOTAS DE UM ALUNO");
 			System.out.println("4- PARA EDITAR A NOTA DE UM ALUNO");
-			System.out.println("3- PARA MOSTRAR O BOLETIM DE UM ALUNO");
+			System.out.println("5- PARA MOSTRAR O BOLETIM DE UM ALUNO");
 			System.out.println("6- PARA EXCLUIR UM ALUNO");
 			System.out.println("7- PARA FECHAR O PROGORAMA");
 			
@@ -45,7 +45,7 @@ public class Secretaria {
 					int matricula = leitor.nextInt();
 					aluno.setNome(nome);
 					aluno.setMatricula(matricula);
-					
+					System.out.print("\n");
 				break;
 				
 				case 2:
@@ -61,6 +61,7 @@ public class Secretaria {
 					}else{
 						System.out.println("Aluno nao encontrado!");
 					}
+					System.out.print("\n");
 				break;
 				
 				case 3:	
@@ -73,6 +74,7 @@ public class Secretaria {
 					boletim.setNota1(nota1);
 					boletim.setNota2(nota2);
 					boletim.setNotaFinal((boletim.getNota1()+boletim.getNota2())/2);
+					System.out.print("\n");
 					
 				break;
 				
@@ -106,6 +108,7 @@ public class Secretaria {
 					}else{
 						System.out.println("Aluno nao encontrado!");
 					}
+					System.out.print("\n");
 				break;
 				
 				case 5:
@@ -113,12 +116,14 @@ public class Secretaria {
 						boletim.imprimirBoletim();
 				break;
 					
-				/*
 				case 6:
 				//excluirAluno()
-					String procura;
+					String excluir;
 					
-					if(procura.equals(aluno.nome)){
+					System.out.println("Digite o nome do aluno que voce deseja excluir: ");
+					excluir = leitor.next();
+					
+					if(excluir.equals(aluno.nome)){
 						System.out.println("Aluno Encontrado");
 						aluno.imprimir();
 						System.out.println("\nVoce tem certeza de que quer excluir o aluno?");
@@ -131,9 +136,9 @@ public class Secretaria {
 						}
 						
 					}
+					System.out.print("\n");
 				break;
-				 */
-			
+	
 			}
 			
 		}while (opcaoMenu != 7);
