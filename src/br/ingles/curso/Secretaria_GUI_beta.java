@@ -7,8 +7,7 @@ public class Secretaria_GUI_beta {
 		
 
 		Aluno_GUI aluno = new Aluno_GUI("",0);
-		
-		Boletim boletim = new Boletim(aluno.nome, aluno.matricula, 0, 0);
+		Boletim_GUI boletim_GUI = new Boletim_GUI(aluno.nome, aluno.matricula, 0, 0);
 		
 		int opcaoMenu;
 		
@@ -18,9 +17,9 @@ public class Secretaria_GUI_beta {
 		opcaoMenu = Integer.parseInt(opcao);
 		
 			switch (opcaoMenu){
-			//inserirAluno()
 			
 				case 1:
+				//inserirAluno()
 				
 					aluno.nome = JOptionPane.showInputDialog("Digite o nome: ");
 					String matricula = JOptionPane.showInputDialog("Digite a matricula: ");
@@ -42,7 +41,6 @@ public class Secretaria_GUI_beta {
 					}else{
 						JOptionPane.showMessageDialog(null, "Aluno nao encontrado!");
 					}
-					System.out.print("\n");
 				break;
 				
 				case 3:	
@@ -52,13 +50,14 @@ public class Secretaria_GUI_beta {
 					float nota1 = Float.parseFloat(nota_1);
 					String nota_2 = JOptionPane.showInputDialog("Digite a nota da segunda prova: ");
 					float nota2 = Float.parseFloat(nota_2);
-					boletim.setNota1(nota1);
-					boletim.setNota2(nota2);
-					boletim.setNotaFinal((boletim.getNota1()+boletim.getNota2())/2);
+					boletim_GUI.setNota1(nota1);
+					boletim_GUI.setNota2(nota2);
+					boletim_GUI.setNotaFinal((boletim_GUI.getNota1()+boletim_GUI.getNota2())/2);
 				break;
 				
 				case 4:
 				//editarNotas()
+					
 					String procura1 = JOptionPane.showInputDialog("Digite a matricula do aluno que voce deseja editar a nota: ");
 					procurar = Integer.parseInt(procura1);
 					
@@ -69,17 +68,17 @@ public class Secretaria_GUI_beta {
 						if(escolha == 1){
 							nota_1 = JOptionPane.showInputDialog("Digite a nova nota do aluno: ");
 							nota1 = Float.parseFloat(nota_1);
-							boletim.setNota1(nota1);
-							boletim.setNotaFinal((boletim.getNota1()+boletim.getNota2())/2);
-							boletim.imprimirBoletim();
+							boletim_GUI.setNota1(nota1);
+							boletim_GUI.setNotaFinal((boletim_GUI.getNota1()+boletim_GUI.getNota2())/2);
+							boletim_GUI.imprimir();
 						}
 						
 						if(escolha == 2){
 							nota_2 = JOptionPane.showInputDialog("Digite a nova nota do aluno: ");
 							nota2 = Float.parseFloat(nota_2);
-							boletim.setNota2(nota2);
-							boletim.setNotaFinal((boletim.getNota1()+boletim.getNota2())/2);
-							boletim.imprimirBoletim();
+							boletim_GUI.setNota2(nota2);
+							boletim_GUI.setNotaFinal((boletim_GUI.getNota1()+boletim_GUI.getNota2())/2);
+							boletim_GUI.imprimirBoletim_GUI();
 						}
 							
 					}else{
@@ -90,33 +89,25 @@ public class Secretaria_GUI_beta {
 				
 				case 5:
 				//mostrarBoletim
-						boletim.imprimirBoletim();
+						boletim_GUI.imprimirBoletim_GUI();
 				break;
 				
-				/*
 				case 6:
 				//excluirAluno()
-					String excluir;
 					
-					System.out.println("Digite o nome do aluno que voce deseja excluir: ");
-					excluir = leitor.next();
+					String excluir =JOptionPane.showInputDialog("Digite a matrícula do aluno que voce deseja excluir: ");
+					int delete = Integer.parseInt(excluir);
 					
-					if(excluir.equals(aluno.nome)){
-						System.out.println("Aluno Encontrado");
-						aluno.imprimir();
-						System.out.println("\nVoce tem certeza de que quer excluir o aluno?");
-						System.out.println("1- SIM\n2- NAO");
-						int escolha = leitor.nextInt();
-						
-						if(escolha == 1){
+					if(delete == aluno.matricula){
+						int escolha= JOptionPane.showConfirmDialog(null, "Aluno Encontrado!\nNome: "+aluno.nome+"\nMatricula: "+aluno.matricula+"\nVoce tem certeza de que quer excluir o aluno?");
+			
+						if(escolha == JOptionPane.YES_OPTION){
 							aluno.excluirAluno();
 							aluno.imprimir();
 						}
 						
 					}
-					System.out.print("\n");
 				break;
-				*/
 			}
 		
 		}while (opcaoMenu != 7);

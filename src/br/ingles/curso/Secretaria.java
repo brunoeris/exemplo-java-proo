@@ -7,18 +7,15 @@ public class Secretaria {
 	private static Scanner leitor;
 	
 	public static void main(String[]args) {
-		
-		Aluno aluno = new Aluno("",0);
-		
-		Boletim boletim = new Boletim(aluno.nome, aluno.matricula, 0, 0);
-		
-		
+			
 		leitor = new Scanner (System.in);
 		
 		int opcaoMenu;
 		
-		do{
+		Aluno aluno = new Aluno("",0);
 		
+		do{
+			
 			//MENU
 			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?' ");
 			System.out.println("MENU");
@@ -32,7 +29,7 @@ public class Secretaria {
 			
 			opcaoMenu = leitor.nextInt();
 			
-			
+			Boletim boletim = new Boletim(aluno.nome, aluno.matricula, 0, 0);
 			
 			switch (opcaoMenu){
 			//inserirAluno()
@@ -66,7 +63,6 @@ public class Secretaria {
 				
 				case 3:	
 				//inserirNotas()
-				
 					System.out.println("Digite a nota da primeira prova: ");
 					float nota1 = leitor.nextFloat();
 					System.out.println("Digite a nota da segunda prova: ");

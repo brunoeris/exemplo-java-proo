@@ -8,16 +8,20 @@ import javax.swing.JOptionPane;
 		private float notaFinal;
 		
 		
-		public Boletim_GUI(String nome, int matricula,float nota1, float nota2){
-			super (nome,matricula);
+		
+		public Boletim_GUI(String nome, int matricula, float nota1,
+				float nota2) {
+			super(nome, matricula);
 			this.nota1 = nota1;
 			this.nota2 = nota2;
 			this.notaFinal = (this.nota1+this.nota2)/2;
 		}
+
+
+		public void imprimirBoletim_GUI(){
 		
-		public void imprimirBoletim(){
-			JOptionPane.showMessageDialog(null,"NOTAS\nNome: "+super.nome+"\nMatricula: "+super.matricula+"\nNota da primeira prova: "+getNota1()+"\nNota da segunda prova: "+getNota2()+"\n\nMÉDIA FINAL: "+getNotaFinal());
-			
+			JOptionPane.showMessageDialog(null,"NOTAS\nNome: "+super.nome+"\nMatricula: "+super.matricula+"\nNota da primeira prova: "+this.nota1+"\nNota da segunda prova: "+this.nota1+"\n\nMÉDIA FINAL: "+this.notaFinal);
+		
 		}
 		
 		
