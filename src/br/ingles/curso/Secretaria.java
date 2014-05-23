@@ -53,9 +53,9 @@ public class Secretaria {
 					
 					
 					System.out.println("Digite o nome do aluno que voce deseja encontrar: ");
-					String procura = leitor.next();
+					int procura = leitor.nextInt();
 					
-					if(procura.equals(aluno.nome)){
+					if(procura == aluno.matricula){
 						System.out.println("Aluno Encontrado");
 						aluno.imprimir();	
 					}else{
@@ -81,9 +81,9 @@ public class Secretaria {
 				case 4:
 				//editarNotas()
 					System.out.println("Digite o nome do aluno que voce deseja editar a nota: ");
-					procura = leitor.next();
+					procura = leitor.nextInt();
 					
-					if(procura.equals(aluno.nome)){
+					if(procura == aluno.matricula){
 						System.out.println("Aluno Encontrado!");
 						System.out.println("Você deseja editar qual das notas do aluno? Digite");
 						System.out.println("1- A primeira nota \n2-A segunda nota");
