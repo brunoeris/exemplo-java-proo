@@ -1,5 +1,4 @@
 package br.ingles.curso;
-import javax.swing.JOptionPane;
 
 	public class Boletim_GUI extends Aluno_GUI{
 		
@@ -9,19 +8,10 @@ import javax.swing.JOptionPane;
 		
 		
 		
-		public Boletim_GUI(String nome, int matricula, float nota1,
-				float nota2) {
-			super(nome, matricula);
-			this.nota1 = nota1;
-			this.nota2 = nota2;
+		public Boletim_GUI() {
+			this.nota1 = 0;
+			this.nota2 = 0;
 			this.notaFinal = (this.nota1+this.nota2)/2;
-		}
-
-
-		public void imprimirBoletim_GUI(){
-		
-			JOptionPane.showMessageDialog(null,"NOTAS\nNome: "+super.nome+"\nMatricula: "+super.matricula+"\nNota da primeira prova: "+this.nota1+"\nNota da segunda prova: "+this.nota1+"\n\nMÉDIA FINAL: "+this.notaFinal);
-		
 		}
 		
 		

@@ -7,18 +7,13 @@ public class Aluno_GUI {
 	protected String nome;
 	protected int matricula;
 	
-	public Aluno_GUI(String nome, int matricula) {
-		this.nome = nome;
-		this.matricula = matricula;
+	public Aluno_GUI() {
+		this.nome = "";
+		this.matricula = 0;
 	}
 
 	public void imprimir(){
 		JOptionPane.showMessageDialog(null, "Nome: "+this.nome+"\nMatricula: "+this.matricula);	
-	}
-	
-	public void excluirAluno(){
-		this.nome = " ";
-		this.matricula = 0;
 	}
 
 	//getters and setters
