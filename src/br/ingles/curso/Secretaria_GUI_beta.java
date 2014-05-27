@@ -57,18 +57,18 @@ public class Secretaria_GUI_beta {
 					String procura = JOptionPane.showInputDialog("Digite a matricula do aluno que voce deseja encontrar: ");
 					procurar = Integer.parseInt(procura);
 					
-					for(j=0;j<=TAMANHO;j++){
-						if(procurar == aluno[j].matricula){
-							JOptionPane.showMessageDialog(null, "Aluno encontrado!");
-							aluno[j].imprimir();
-							achou = 1;
-							break;
+						for(j=0;j<=TAMANHO;j++){
+							if(procurar == aluno[j].matricula){
+								JOptionPane.showMessageDialog(null, "Aluno encontrado!");
+								aluno[j].imprimir();
+								achou = 1;
+								break;
+							}
+							
+							else if (achou == 1){
+								JOptionPane.showMessageDialog(null, "Aluno nao encontrado!");
+							}
 						}
-						
-						else if (achou == 1){
-							JOptionPane.showMessageDialog(null, "Aluno nao encontrado!");
-						}
-					}
 				break;
 				
 				case 3:	
@@ -160,18 +160,23 @@ public class Secretaria_GUI_beta {
 				
 				case 6:
 				//excluirAluno()
-					
+					int d=0;
+					boletim[d] = new Boletim_GUI(); 
 					String excluir =JOptionPane.showInputDialog("Digite a matrícula do aluno que voce deseja excluir: ");
 					int delete = Integer.parseInt(excluir);
 					
-					if(delete == aluno[TAMANHO].matricula){
-						int escolha= JOptionPane.showConfirmDialog(null, "Aluno Encontrado!\nNome: "+aluno[TAMANHO].nome+"\nMatricula: "+aluno[TAMANHO].matricula+"\nVoce tem certeza de que quer excluir o aluno?");
-			
-						if(escolha == JOptionPane.YES_OPTION){
-							aluno[TAMANHO] = new Aluno_GUI();
-							JOptionPane.showMessageDialog(null, "Aluno Excluído!");
+					for(d=0;d<=TAMANHO;d++){
+						if(delete == aluno[d].matricula){
+							int escolha= JOptionPane.showConfirmDialog(null, "Aluno Encontrado!\nNome: "+aluno[d].nome+"\nMatricula: "+aluno[d].matricula+"\nVoce tem certeza de que quer excluir o aluno?");
+						   	if(escolha == JOptionPane.YES_OPTION){
+								aluno[d].setNome("Aluno Excluído!");
+								boletim[d].setNota1(0);
+								boletim[d].setNota2(0);
+								JOptionPane.showMessageDialog(null, "Aluno Excluído!");
+								break;
+							}else
+								break;
 						}
-						
 					}
 				break;
 			}
