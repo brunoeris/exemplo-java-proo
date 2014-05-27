@@ -6,11 +6,13 @@ public class Secretaria_GUI_beta {
 	public static void main(String[] args) {
 		
 		final int TAMANHO = 50;
+		
 		int i = 0;
 		int b = 0;
 		
 		Aluno_GUI[] aluno = new Aluno_GUI[TAMANHO];
 		Boletim_GUI[] boletim = new Boletim_GUI[TAMANHO];
+		
 		
 		int opcaoMenu;
 		
@@ -23,11 +25,22 @@ public class Secretaria_GUI_beta {
 			
 				case 1:
 				//inserirAluno()
-				aluno[i] = new Aluno_GUI();
+					int search;
+					aluno[i] = new Aluno_GUI();
 					String nome = JOptionPane.showInputDialog("Digite o nome: ");
 					aluno[i].setNome(nome);
 					String matricula = JOptionPane.showInputDialog("Digite a matricula: ");
 					int matric = Integer.parseInt(matricula);
+					if (i!=0){
+						for(search=i;search>=0;search--){
+							if(matric == aluno[search].matricula){
+								JOptionPane.showMessageDialog(null, "Matricula já existe! " +
+										"Tente cadastrar novamente.");
+								i--;
+								break;
+							}
+						}
+					}
 					aluno[i].setMatricula(matric);
 					i++;
 					
@@ -37,8 +50,9 @@ public class Secretaria_GUI_beta {
 				//procurarAluno();
 					
 					int j;
-					int achou = 0;
 					int procurar;
+					int achou = 0;
+				
 					
 					String procura = JOptionPane.showInputDialog("Digite a matricula do aluno que voce deseja encontrar: ");
 					procurar = Integer.parseInt(procura);
@@ -51,7 +65,7 @@ public class Secretaria_GUI_beta {
 							break;
 						}
 						
-						if (achou == 0){
+						else if (achou == 1){
 							JOptionPane.showMessageDialog(null, "Aluno nao encontrado!");
 						}
 					}
@@ -59,26 +73,29 @@ public class Secretaria_GUI_beta {
 				
 				case 3:	
 				//inserirNotas()				
-				boletim[b] = new Boletim_GUI();
+				achou = 0;
 				
 				String procura3 = JOptionPane.showInputDialog("Digite a matricula do aluno que voce deseja cadastrar notas: ");
 				procurar = Integer.parseInt(procura3);
 					
 				for(b=0;b<=TAMANHO;b++){
 					if(procurar == aluno[b].matricula){
-						JOptionPane.showMessageDialog(null, "Aluno encontrado!");
+						boletim[b] = new Boletim_GUI();
+						JOptionPane.showMessageDialog(null, "Aluno encontrado!\n"+aluno[b].getNome());
 						aluno[b].imprimir();
+						String nota_1= JOptionPane.showInputDialog("Digite a nota da primeira prova: ");
+						float nota1 = Float.parseFloat(nota_1);
+						boletim[b].setNota1(nota1);
+						String nota_2 = JOptionPane.showInputDialog("Digite a nota da segunda prova: ");
+						float nota2 = Float.parseFloat(nota_2);
+						boletim[b].setNota2(nota2);
+						boletim[b].setNotaFinal((boletim[b].getNota1()+boletim[b].getNota2())/2);
+						achou = 1;
 						break;
-					}
-				}
+					}else if (achou == 1)
+						JOptionPane.showMessageDialog(null, "Aluno nao encontrado!");
 					
-				String nota_1= JOptionPane.showInputDialog("Digite a nota da primeira prova: ");
-				float nota1 = Float.parseFloat(nota_1);
-				boletim[b].setNota1(nota1);
-				String nota_2 = JOptionPane.showInputDialog("Digite a nota da segunda prova: ");
-				float nota2 = Float.parseFloat(nota_2);
-				boletim[b].setNota2(nota2);
-				boletim[b].setNotaFinal((boletim[b].getNota1()+boletim[b].getNota2())/2);
+				}
 				break;
 	
 				case 4:
@@ -100,6 +117,7 @@ public class Secretaria_GUI_beta {
 								float nota11 = Float.parseFloat(Nota1);
 								boletim[e].setNota1(nota11);
 								boletim[e].setNotaFinal((boletim[e].getNota1()+boletim[e].getNota2())/2);
+								encontrou = 1;
 								break;
 							}
 							
@@ -108,9 +126,9 @@ public class Secretaria_GUI_beta {
 								float nota21 = Float.parseFloat(Nota2);
 								boletim[e].setNota2(nota21);
 								boletim[e].setNotaFinal((boletim[e].getNota1()+boletim[e].getNota2())/2);
+								encontrou = 1;
 								break;
 							}
-						encontrou = 1;
 						}	
 						
 					}
@@ -125,7 +143,7 @@ public class Secretaria_GUI_beta {
 				//mostrarBoletim
 				int m;
 				int checaboletim = 0;
-					String procura2 = JOptionPane.showInputDialog("Digite a matricula do aluno que voce deseja editar a nota: ");
+					String procura2 = JOptionPane.showInputDialog("Digite a matricula do aluno que voce deseja mostrar o boletim: ");
 					procurar = Integer.parseInt(procura2);
 					
 					for(m=0;m<=TAMANHO;m++){
