@@ -17,7 +17,7 @@ public class Secretaria {
 		
 			
 			//MENU
-			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?'");
+			System.out.println("CURSO DE INGLÃŠS 'HOW ARE YOU LEARNING?'");
 			System.out.println("MENU");
 			System.out.println("1- PARA INSERIR ALUNO");
 			System.out.println("2- PARA PROCURAR UM ALUNO");
@@ -34,6 +34,26 @@ public class Secretaria {
 
 			case 1:
 			//Inserir Aluno
+				System.out.println("Digite o seu nome");
+			break;
+			case 2:
+			//Procurar um aluno
+				System.out.println("Digite o seu nome");
+			break;
+			case 3:
+			//Inserir Notas
+				System.out.println("Digite o seu nome");
+			break;
+			case 4:
+			//Editar Nota
+				System.out.println("Digite o seu nome");
+			break;
+			case 5:
+			//Mostrar Boletim
+				System.out.println("Digite o seu nome");
+			break;
+			case 6:
+			//Excluir Aluno
 				System.out.println("Digite o seu nome");
 			break;
 				
