@@ -1,6 +1,7 @@
 package br.edu.ifal.proo.projetofinal;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Secretaria {
 	private static Scanner leitor;
@@ -12,9 +13,11 @@ public class Secretaria {
 		int opcaoMenu;
 			
 		do{
+		
+		
 			
 			//MENU
-			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?' ");
+			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?'");
 			System.out.println("MENU");
 			System.out.println("1- PARA INSERIR ALUNO");
 			System.out.println("2- PARA PROCURAR UM ALUNO");
@@ -26,8 +29,17 @@ public class Secretaria {
 			
 			opcaoMenu = leitor.nextInt();
 
+		switch (opcaoMenu){
+		
+
+			case 1:
+			//Inserir Aluno
+				System.out.println("Digite o seu nome");
+			break;
+				
 		}
-
+		
+		}
+		while(opcaoMenu != 7);
 	}
-
 }
