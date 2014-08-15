@@ -29,7 +29,7 @@ public class Secretaria {
 			opcaoMenu = leitor.nextInt();
 
 		switch (opcaoMenu){
-		
+		//comentario da atualização
 
 			case 1:
 			//Inserir Contratante 
