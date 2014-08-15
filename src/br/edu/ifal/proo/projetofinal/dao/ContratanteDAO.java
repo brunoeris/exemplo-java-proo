@@ -11,7 +11,7 @@ public class ContratanteDAO {
 	
 	public void save(Contratante contratante){
 		String sql = "INSERT INTO contratante(nome,cpf,sexo, idade," +
-				"endereco,cidade,estado VALUES ('"+contratante.getNome()+"','"+contratante.getCpf()+"',"+contratante.getIdade()+"" +
+				"endereco,cidade,estado) VALUES ('"+contratante.getNome()+"','"+contratante.getCpf()+"',"+contratante.getIdade()+",'"+contratante.getSexo()+"' "+
 						",'"+contratante.getEndereco()+"','"+contratante.getCidade()+"','"+contratante.getEstado()+"')";
 		System.out.println(sql);
 		ConexaoBD.executa(sql);
