@@ -1,5 +1,7 @@
 package br.edu.ifal.proo.projetofinal.model;
 
+import br.edu.ifal.proo.projetofinal.dao.ContratanteDAO;
+
 public class Contratante extends Pessoa {
 
 	private boolean pagamento;
@@ -7,6 +9,11 @@ public class Contratante extends Pessoa {
 	public Contratante(String nome, String cpf, String sexo, int idade,
 			String endereco, String cidade, String estado) {
 		super(nome, cpf, sexo, idade, endereco, cidade, estado);
+	}
+	
+	public void cadastrarContratante (){
+		ContratanteDAO contratantedao = new ContratanteDAO();
+		contratantedao.save(this);
 	}
 	
 	public void pago(){

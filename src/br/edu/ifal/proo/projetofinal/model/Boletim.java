@@ -1,14 +1,11 @@
 package br.edu.ifal.proo.projetofinal.model;
 
-public class Boletim extends Aluno{
+public class Boletim{
 	private double notaA;
 	private double notaB;
 	private double media;
-	public Boletim(String nome, String cpf, String sexo, int idade,
-			String endereco, String cidade, String estado, String matricula,
-			int rg, int nivel, double notaA, double notaB, double media) {
-		super(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg,
-				nivel);
+	
+	public Boletim(double notaA, double notaB, double media) {
 		this.notaA = notaA;
 		this.notaB = notaB;
 		this.media = media;
