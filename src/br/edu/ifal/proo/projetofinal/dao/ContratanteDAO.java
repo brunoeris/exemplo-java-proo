@@ -10,9 +10,8 @@ import br.edu.ifal.proo.projetofinal.bd.ConexaoBD;
 public class ContratanteDAO {
 	
 	public void save(Contratante contratante){
-		String sql = "INSERT INTO contratante(nome,cpf,sexo, idade," +
-				"endereco,cidade,estado) VALUES ('"+contratante.getNome()+"','"+contratante.getCpf()+"',"+contratante.getIdade()+",'"+contratante.getSexo()+"' "+
-						",'"+contratante.getEndereco()+"','"+contratante.getCidade()+"','"+contratante.getEstado()+"')";
+		String sql = "INSERT INTO contratante(nome,cpf,sexo,idade," +
+				"endereco,cidade,estado) VALUES ('"+contratante.getNome()+"','"+contratante.getCpf()+"','"+contratante.getSexo()+"',"+contratante.getIdade()+",'"+contratante.getEndereco()+"','"+contratante.getCidade()+"','"+contratante.getEstado()+"')";
 		System.out.println(sql);
 		ConexaoBD.executa(sql);
 	}
