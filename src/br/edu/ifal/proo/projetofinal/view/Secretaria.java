@@ -14,9 +14,7 @@ public class Secretaria {
 		int opcaoMenu;
 			
 		do{
-		
-		
-			
+				
 			//MENU
 			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?'");
 			System.out.println("MENU");
