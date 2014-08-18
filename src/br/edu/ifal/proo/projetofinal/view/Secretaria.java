@@ -19,8 +19,8 @@ public class Secretaria {
 			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?'");
 			System.out.println("MENU");
 			System.out.println("1- PARA INSERIR CONTRATANTE");
-			System.out.println("2- PARA CADASTRAR UM ALUNO");
-			System.out.println("3- PARA INSERIR NOTAS DE UM ALUNO");
+			System.out.println("2- PARA PROCURAR UM CONTRATANTE");
+			System.out.println("3- PARA INSERIR UM ALUNO");
 			System.out.println("4- PARA EDITAR A NOTA DE UM ALUNO");
 			System.out.println("5- PARA MOSTRAR O BOLETIM DE UM ALUNO");
 			System.out.println("6- PARA EXCLUIR UM ALUNO");
@@ -51,7 +51,13 @@ public class Secretaria {
 			break;
 			
 			case 2:
-			//Cadastrar aluno
+			//procurarContratante()	
+			System.out.println("Digite o cpf do contratante que você deseja encontrar: ");
+			cpf = leitor.next();
+			
+				
+			case 3:
+			//Listar aluno
 				System.out.println("Digite o nome do aluno: ");
 				nome = leitor.next();
 				System.out.println("Digite o CPF do aluno: ");
@@ -75,21 +81,21 @@ public class Secretaria {
 				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel);
 			break;
 			
-			case 3:
+			case 4:
 			//Procurar Contratante
 				System.out.println("Digite o cpf do contratante: ");
 				cpf = leitor.next();
 				
 			break;
-			case 4:
+			case 5:
 			//Editar Nota
 				System.out.println("Digite o seu nome");
 			break;
-			case 5:
+			case 6:
 			//Mostrar Boletim
 				System.out.println("Digite o seu nome");
 			break;
-			case 6:
+			case 7:
 			//Excluir Aluno
 				System.out.println("Digite o seu nome");
 			break;
