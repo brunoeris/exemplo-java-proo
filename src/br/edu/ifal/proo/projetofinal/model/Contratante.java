@@ -1,5 +1,7 @@
 package br.edu.ifal.proo.projetofinal.model;
 
+import java.util.ArrayList;
+
 import br.edu.ifal.proo.projetofinal.dao.ContratanteDAO;
 
 public class Contratante extends Pessoa {
@@ -11,9 +13,28 @@ public class Contratante extends Pessoa {
 		super(nome, cpf, sexo, idade, endereco, cidade, estado);
 	}
 	
+	
+	public Contratante(){
+	}
+	
 	public void cadastrarContratante (){
 		ContratanteDAO contratantedao = new ContratanteDAO();
 		contratantedao.save(this);
+	}
+	
+	public int obterQuantidade(){
+		ContratanteDAO dao = new ContratanteDAO();
+		return dao.count();
+	}
+	
+	public ArrayList listar(){
+		ContratanteDAO dao = new ContratanteDAO();
+		return dao.findAll();
+	}
+	
+	public boolean alterar(){
+		ContratanteDAO dao = new ContratanteDAO();
+		return dao.update(this);
 	}
 	
 	public void pago(){

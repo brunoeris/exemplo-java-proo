@@ -21,8 +21,13 @@ public class Pessoa {
 		this.estado = estado;
 	}
 	
+	public Pessoa() {
+	}
+
+	
 	//getters and setters
 
+	
 	public String getNome() {
 		return nome;
 	}

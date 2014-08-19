@@ -51,10 +51,17 @@ public class Secretaria {
 			break;
 			
 			case 2:
-			//procurarContratante()	
+			//listarContratante()	
 			System.out.println("Digite o cpf do contratante que você deseja encontrar: ");
 			cpf = leitor.next();
-			
+			contratante = new Contratante();
+			System.out.println("Número de contratantes cadastrados: "+contratante.obterQuantidade());
+			ArrayList contratantes = contratante.listar();
+			for (int i = 0; i < contratantes.size(); i++) {
+				Contratante aux = (Contratante) contratantes.get(i);
+				System.out.println("Nome = "+aux.getNome());
+				System.out.println("Matricula = "+aux.getCpf());
+			}
 				
 			case 3:
 			//Listar aluno
@@ -82,9 +89,7 @@ public class Secretaria {
 			break;
 			
 			case 4:
-			//Procurar Contratante
-				System.out.println("Digite o cpf do contratante: ");
-				cpf = leitor.next();
+			//listarContratantes()
 				
 			break;
 			case 5:
