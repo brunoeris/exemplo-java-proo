@@ -6,10 +6,12 @@ import br.edu.ifal.proo.projetofinal.model.*;
 
 public class Secretaria {
 	private static Scanner leitor;
+	private static Scanner leitorespaco;
 	
 	public static void main(String[]args) {
 			
 		leitor = new Scanner (System.in);
+		leitorespaco = new Scanner (System.in);
 		
 		int opcaoMenu;
 			
@@ -19,8 +21,8 @@ public class Secretaria {
 			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?'");
 			System.out.println("MENU");
 			System.out.println("1- PARA INSERIR CONTRATANTE");
-			System.out.println("2- PARA PROCURAR UM CONTRATANTE");
-			System.out.println("3- PARA INSERIR UM ALUNO");
+			System.out.println("2- PARA LISTAR OS CONTRATANTES");
+			System.out.println("3- PARA ALTERAR UM CONTRATANTE");
 			System.out.println("4- PARA EDITAR A NOTA DE UM ALUNO");
 			System.out.println("5- PARA MOSTRAR O BOLETIM DE UM ALUNO");
 			System.out.println("6- PARA EXCLUIR UM ALUNO");
@@ -31,7 +33,7 @@ public class Secretaria {
 		switch (opcaoMenu){
 
 			case 1:
-			//Inserir Contratante 
+			//inserirContratante() 
 				System.out.println("Digite o nome do contratante: ");
 				String nome = leitor.next();
 				System.out.println("Digite o cpf do contratante");
@@ -52,21 +54,61 @@ public class Secretaria {
 			
 			case 2:
 			//listarContratante()	
-			System.out.println("Digite o cpf do contratante que você deseja encontrar: ");
-			cpf = leitor.next();
+			/*System.out.println("Digite o cpf do contratante que você deseja encontrar: ");
+			cpf = leitor.next();*/
 			contratante = new Contratante();
-			System.out.println("Número de contratantes cadastrados: "+contratante.obterQuantidade());
+			System.out.println("Número de contratantes cadastrados: "+contratante.obterQuantidade()+"\n");
 			ArrayList contratantes = contratante.listar();
+			System.out.println("|------------ CONTRATANTES ------------|");
 			for (int i = 0; i < contratantes.size(); i++) {
 				Contratante aux = (Contratante) contratantes.get(i);
-				System.out.println("Nome = "+aux.getNome());
-				System.out.println("Matricula = "+aux.getCpf());
+				System.out.println("  Nome = "+aux.getNome());
+				System.out.println("  Matricula = "+aux.getCpf());
+				System.out.println("|--------------------------------------|");
 			}
-				
+			System.out.println("\n");
+			break;
+			
 			case 3:
-			//Listar aluno
+			//alterarContratante()
+				System.out.println("Digite o cpf do contratante no qual deseja alterar os dados: ");
+				cpf = leitor.next();
+				contratante = new Contratante();
+				System.out.println("Contratante a ser alterado:"); 
+				contratante.buscar(cpf);
+				contratante.mostrar(cpf);
+				if (contratante.buscar(cpf)){
+					System.out.print("Digite o novo nome: \n");
+					nome = leitorespaco.next();
+					System.out.println("Digite o novo sexo: ");
+					sexo = leitor.next();
+					System.out.println("Digite a nova idade: ");
+					idade = leitor.nextInt();
+					System.out.println("Digite o novo endereço: ");
+					endereco = leitor.next();
+					System.out.println("Digite a nova cidade: ");
+					cidade = leitor.next();
+					System.out.println("Digite o novo estado: ");
+					estado = leitor.next();
+					contratante.setSexo(sexo);
+					contratante.setIdade(idade);
+					contratante.setEndereco(endereco);
+					contratante.setCidade(cidade);
+					contratante.setEstado(estado);
+					if (contratante.alterar())
+						System.out.println("Alterado com sucesso!");
+					else
+						System.out.println("Erro na alteração!");
+				}
+				else
+					System.out.println("Contratante "+cpf+" não encontrado!");
+				break;
+			
+			case 4:
+			
+			//cadastrarAluno()
 				System.out.println("Digite o nome do aluno: ");
-				nome = leitor.next();
+				nome = leitorespaco.next();
 				System.out.println("Digite o CPF do aluno: ");
 				cpf = leitor.next();
 				System.out.println("Digite o sexo do aluno: ");
@@ -86,25 +128,7 @@ public class Secretaria {
 				System.out.println("Digite o nivel em que o aluno se encontra (ex: Basic 1; Basic 2, Inter 2)");
 				String nivel = leitor.next();
 				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel);
-			break;
-			
-			case 4:
-			//listarContratantes()
-				
-			break;
-			case 5:
-			//Editar Nota
-				System.out.println("Digite o seu nome");
-			break;
-			case 6:
-			//Mostrar Boletim
-				System.out.println("Digite o seu nome");
-			break;
-			case 7:
-			//Excluir Aluno
-				System.out.println("Digite o seu nome");
-			break;
-				
+			break;	
 		}
 		
 		}

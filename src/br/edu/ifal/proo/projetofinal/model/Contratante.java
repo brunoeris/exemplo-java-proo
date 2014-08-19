@@ -32,6 +32,16 @@ public class Contratante extends Pessoa {
 		return dao.findAll();
 	}
 	
+	public boolean buscar(String cpf){
+		ContratanteDAO dao = new ContratanteDAO();
+		return dao.find(cpf);
+	}
+	
+	public boolean mostrar(String cpf){
+		ContratanteDAO dao = new ContratanteDAO();
+		return dao.mostrar(cpf);
+	}
+	
 	public boolean alterar(){
 		ContratanteDAO dao = new ContratanteDAO();
 		return dao.update(this);

@@ -57,9 +57,40 @@ public class ContratanteDAO {
 	}
 	
 	public boolean update(Contratante contratante){
-		String sql = "UPDATE contratante SET nome = '"+contratante.getNome()+"' WHERE cpf = "+contratante.getCpf();
+		String sql = "UPDATE contratante SET nome = '"+contratante.getNome()+"', sexo ='"+contratante.getSexo()+", idade ="+contratante.getIdade()+"', endereco ='"+contratante.getEndereco()+"', cidade ='"+contratante.getCidade()+ "', estado ='"+contratante.getEstado()+"'WHERE cpf = "+contratante.getCpf();
 		System.out.println(sql);
 		return ConexaoBD.executa(sql);
+	}
+
+	public boolean find(String cpf) {
+		String sql = "SELECT * FROM contratante WHERE cpf="+cpf;
+		ResultSet resultado = ConexaoBD.consulta(sql);
+		try {
+			if (resultado.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		return false;
+	}
+	
+	public boolean mostrar(String cpf){
+		String sql = "SELECT * FROM contratante WHERE cpf="+cpf;
+		ResultSet resultado = ConexaoBD.consulta(sql);
+		try {
+			if (resultado.next()){
+				String nome = resultado.getString("nome");
+				cpf = resultado.getString("cpf");
+				System.out.println("Nome: "+nome);
+				System.out.println("CPF: "+cpf);
+				return true;
+			}
+		} catch (SQLException e) {
+			System.err.println(e);
+		}
+		return false;
+
 	}
 
 
