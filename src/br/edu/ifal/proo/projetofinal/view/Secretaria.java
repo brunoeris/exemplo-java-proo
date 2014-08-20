@@ -24,9 +24,9 @@ public class Secretaria {
 			System.out.println("2- PARA LISTAR OS CONTRATANTES");
 			System.out.println("3- PARA ALTERAR UM CONTRATANTE");
 			System.out.println("4- PARA ALTERAR SITUACAO DE PAGAMENTO");
-			System.out.println("5- PARA MOSTRAR O BOLETIM DE UM ALUNO");
-			System.out.println("6- PARA EXCLUIR UM ALUNO");
-			System.out.println("7- PARA FECHAR O PROGORAMA");
+			System.out.println("5- PARA INSERIR UM ALUNO");
+			System.out.println("6- PARA ALTERAR UM ALUNO");
+			System.out.println("7- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO");
 			
 			opcaoMenu = leitor.nextInt();
 
@@ -85,7 +85,7 @@ public class Secretaria {
 				contratante.mostrar(cpf);
 				if (contratante.buscar(cpf)){
 		
-					System.out.println("Digite o novo nome: \n");
+					System.out.println("Digite o novo nome: ");
 					nome = leitorespaco.next();
 					System.out.println("Digite o novo sexo: ");
 					sexo = leitor.next();
@@ -115,17 +115,15 @@ public class Secretaria {
 			
 			case 4:
 			//alteraSituacao()
-				
+				contratante = new Contratante();
 				System.out.println("Digite o cpf do contratante no qual " +
 						"deseja alterar situação de pagamento: ");
 				cpf = leitor.next();
-				contratante = new Contratante();
-				nome = contratante.getNome();
+				contratantes = contratante.listar();
 				System.out.println("Contratante a ser alterado:"); 
 				contratante.buscar(cpf);
 				contratante.mostrar(cpf);
 				contratante.setCpf(cpf);
-				contratante.setNome(nome);
 				if(contratante.buscar(cpf)){
 					
 					System.out.println(contratante.getNome());
@@ -133,8 +131,11 @@ public class Secretaria {
 					System.out.println("Digite a nova situação de pagamento: (1- PAGO 2-EM DÉBITO)");
 					pago = leitor.nextInt();
 									
-					if(pago == 1)
-						contratante.setPagamento(1);
+					int pagto;
+					if(pago == 1){
+						pagto = 1;						
+						contratante.setPagamento(pagto);
+					}
 					
 					System.out.println(contratante.getPagamento());
 					
@@ -156,7 +157,6 @@ public class Secretaria {
 			break;
 			
 			case 5:
-			
 			//cadastrarAluno()
 				System.out.println("Digite o nome do aluno: ");
 				nome = leitorespaco.next();
@@ -179,10 +179,16 @@ public class Secretaria {
 				System.out.println("Digite o nivel em que o aluno se encontra (ex: Basic 1; Basic 2, Inter 2)");
 				String nivel = leitor.next();
 				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel);
-			break;	
+			break;
+			
+			case 7:
+			//inserirNotas()
+			System.out.println("Digite a matricula do aluno que deseja alterar as notas: ");
+			matricula = leitor.next();
+			aluno = new Aluno();
 		}
 		
 		}
-		while(opcaoMenu != 7);
+		while(opcaoMenu != 10);
 	}
 }

@@ -1,6 +1,7 @@
 package br.edu.ifal.proo.projetofinal.model;
 
 public class Boletim{
+	private String matricula;
 	private double notaA;
 	private double notaB;
 	private double media;
@@ -12,6 +13,15 @@ public class Boletim{
 	}
 	
 	//getters and setters
+	
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
 	public double getNotaA() {
 		return notaA;
 	}

@@ -6,6 +6,7 @@ public class Aluno extends Pessoa{
 	private int rg;
 	private String nivel;
 	private boolean assistindoAula = false;
+	private Boletim boletim;
 	
 	public Aluno(String nome, String cpf, String sexo, int idade,
 			String endereco, String cidade, String estado,
@@ -16,6 +17,14 @@ public class Aluno extends Pessoa{
 		this.nivel = nivel;
 	}
 	
+	public Boletim getBoletim() {
+		return boletim;
+	}
+
+	public void setBoletim(Boletim boletim) {
+		this.boletim = boletim;
+	}
+
 	public void assistirAula(){
 		if(assistindoAula == true)
 			System.out.println("Assistindo aula...");
