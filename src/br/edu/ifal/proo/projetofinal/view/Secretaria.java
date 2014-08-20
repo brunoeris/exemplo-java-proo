@@ -28,7 +28,7 @@ public class Secretaria {
 			System.out.println("6- PARA INSERIR UM ALUNO");
 			System.out.println("7- PARA LISTAR OS ALUNOS");
 			System.out.println("8- PARA ALTERAR UM ALUNO");
-			System.out.println("9- PARA EXCLUIRUM ALUNO");
+			System.out.println("9- PARA EXCLUIR UM ALUNO");
 			System.out.println("10- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO");
 			System.out.println("11- PARA ALTERAR NOTAS NO BOLETIM DE UM ALUNO (INCOMPLETO)");
 			System.out.println("12- PARA INSERIR UM PROFESSOR");
@@ -341,19 +341,19 @@ public class Secretaria {
 			
 			case 12:
 			//inserirProfessor() 
-				System.out.println("Digite o nome do contratante: ");
+				System.out.println("Digite o nome do professor: ");
 				nome = leitorespaco.nextLine();
-				System.out.println("Digite o cpf do contratante");
+				System.out.println("Digite o cpf do professor");
 				cpf = leitor.next();
-				System.out.println("Digite o sexo do contratante: ");
+				System.out.println("Digite o sexo do professor: ");
 				sexo = leitor.next();
-				System.out.println("Digite a idade do contratante: ");
+				System.out.println("Digite a idade do professor: ");
 				idade = leitor.nextInt();
-				System.out.println("Digite o endereco do contratante: ");
+				System.out.println("Digite o endereco do professor: ");
 				endereco = leitorespaco.nextLine();
-				System.out.println("Digite a cidade do contratante: ");
+				System.out.println("Digite a cidade do professor: ");
 				cidade = leitorespaco.nextLine();
-				System.out.println("Digite o estado do contratante: ");
+				System.out.println("Digite o estado do professor: ");
 				estado = leitorespaco.nextLine();
 				Professor professor = new Professor(nome,cpf,sexo,idade,endereco,cidade,estado);
 				professor.cadastrarProfessor();
@@ -362,9 +362,9 @@ public class Secretaria {
 			case 13:
 			//listarProfessor()	
 				professor = new Professor();
-				System.out.println("Número de contratantes cadastrados: "+professor.obterQuantidade()+"\n");
+				System.out.println("Número de professores cadastrados: "+professor.obterQuantidade()+"\n");
 				ArrayList professores = professor.listar();
-				System.out.println("|------------ CONTRATANTES ------------|");
+				System.out.println("|------------ PROFESSORES ------------|");
 				for (int i = 0; i < professores.size(); i++) {
 					Professor aux = (Professor) professores.get(i);
 					System.out.println("  Nome = "+aux.getNome());
@@ -379,7 +379,7 @@ public class Secretaria {
 				System.out.println("Digite o cpf do professor no qual deseja alterar os dados: ");
 				cpf = leitor.next();
 				professor = new Professor();
-				System.out.println("Contratante a ser alterado:"); 
+				System.out.println("Professor a ser alterado:"); 
 				professor.buscar(cpf);
 				professor.mostrar(cpf);
 				if (professor.buscar(cpf)){

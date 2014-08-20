@@ -17,8 +17,8 @@ public class Professor extends Pessoa{
 	}
 	
 	public void cadastrarProfessor (){
-		ProfessorDAO alunodao = new ProfessorDAO();
-		alunodao.save(this);
+		ProfessorDAO dao= new ProfessorDAO();
+		dao.save(this);
 	}
 	
 	public int obterQuantidade(){
