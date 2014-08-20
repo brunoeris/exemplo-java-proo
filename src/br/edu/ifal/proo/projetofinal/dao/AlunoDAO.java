@@ -97,31 +97,29 @@ public class AlunoDAO {
 
 	}
 	
-	public boolean mostrarBoletim(String matricula){
+	public Aluno mostrarBoletim(String matricula){
 		Aluno aluno = new Aluno();
-		String sql = "SELECT aluno.* FROM aluno INNER JOIN boletim ON aluno.matricula="+matricula+"= boletim.matriculab ORDER BY aluno.nome='"+aluno.getNome();
+		String sql = "SELECT * FROM aluno INNER JOIN boletim ON aluno.matricula = boletim.matriculab WHERE aluno.matricula="+matricula;
 		ResultSet resultado = ConexaoBD.consulta(sql);
 		try {
 			if (resultado.next()){
-				String nome = resultado.getString("nome");
+				String nome = resultado.getString("n");
 				matricula = resultado.getString("matricula");
 				double notaA = resultado.getDouble("notaa");
 				double notaB = resultado.getDouble("notab");
 				double media = resultado.getDouble("media");
-				System.out.println("|----------------- BOLETIM -----------------|");
-				System.out.println("Nome: "+nome);
-				System.out.println("Matricula: "+matricula);
-				System.out.println("Nota da Primeira Prova: "+notaA);
-				System.out.println("Nota da Segunda Prova: "+notaB);
-				System.out.println("Media: "+media);
-				System.out.println("|-------------------------------------------|");
-				return true;
+				aluno= new Aluno(nome,matricula,notaA,notaB,media);
 			}
 		} catch (SQLException e) {
 			System.err.println(e);
 		}
-		return false;
+		return aluno;
 
+	}
+	
+	public boolean delete(String matricula){
+		String sql = "DELETE FROM aluno WHERE matricula="+matricula;
+		return ConexaoBD.executa(sql);
 	}
 
 

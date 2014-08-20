@@ -31,11 +31,6 @@ public class Boletim{
 		return dao.find(matricula);
 	}
 	
-	public boolean mostrarBoletim(String matricula){
-		AlunoDAO dao = new AlunoDAO();
-		return dao.mostrarBoletim(matricula);
-	}
-	
 	public boolean alterar(){
 		BoletimDAO dao = new BoletimDAO();
 		return dao.update(this);

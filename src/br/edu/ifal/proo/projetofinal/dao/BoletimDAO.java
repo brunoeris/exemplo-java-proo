@@ -14,7 +14,7 @@ public class BoletimDAO {
 	}
 	
 	public boolean update(Boletim boletim){
-		String sql = "UPDATE aluno SET matriculab = '"+boletim.getMatricula()+"', notaa ='"+boletim.getNotaA()+", notab = "+boletim.getNotaB()+"', media ='"+boletim.getMedia()+" WHERE matriculab = "+boletim.getMatricula();
+		String sql = "UPDATE boletim SET matriculab = '"+boletim.getMatricula()+"', notaa ='"+boletim.getNotaA()+"', notab = '"+boletim.getNotaB()+"', media ='"+boletim.getMedia()+"' WHERE matriculab = "+boletim.getMatricula();
 		System.out.println(sql);
 		return ConexaoBD.executa(sql);
 	}

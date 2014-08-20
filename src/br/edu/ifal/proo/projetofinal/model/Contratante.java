@@ -1,5 +1,6 @@
 package br.edu.ifal.proo.projetofinal.model;
 
+
 import java.util.ArrayList;
 
 import br.edu.ifal.proo.projetofinal.dao.ContratanteDAO;
@@ -52,7 +53,11 @@ public class Contratante extends Pessoa {
 		ContratanteDAO dao = new ContratanteDAO();
 		return dao.updatePgto(this);
 	}
-
+	
+	public boolean excluir(String cpf){
+		ContratanteDAO dao = new ContratanteDAO();
+		return dao.delete(cpf);
+	}
 
 	public int getPagamento() {
 		return pagamento;

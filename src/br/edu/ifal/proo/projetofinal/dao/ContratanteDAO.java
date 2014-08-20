@@ -96,8 +96,11 @@ public class ContratanteDAO {
 			System.err.println(e);
 		}
 		return false;
-
 	}
-
+	
+	public boolean delete(String cpf){
+		String sql = "DELETE FROM contratante WHERE cpf="+cpf;
+		return ConexaoBD.executa(sql);
+	}
 
 }

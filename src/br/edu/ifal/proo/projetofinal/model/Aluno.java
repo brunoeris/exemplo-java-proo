@@ -3,6 +3,7 @@ package br.edu.ifal.proo.projetofinal.model;
 import java.util.ArrayList;
 
 import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
+import br.edu.ifal.proo.projetofinal.dao.BoletimDAO;
 
 public class Aluno extends Pessoa{
 
@@ -24,6 +25,15 @@ public class Aluno extends Pessoa{
 	public Aluno(){
 	}
 	
+	public Aluno(String nome, String matricula, double notaA, double notaB,
+			double media) {
+		this.nome = nome;
+		this.matricula = matricula;
+		boletim.setNotaA(notaA);
+		boletim.setNotaB(notaB);
+		boletim.setMedia(media);
+	}
+
 	public void cadastrarAluno (){
 		AlunoDAO alunodao = new AlunoDAO();
 		alunodao.save(this);
@@ -49,7 +59,7 @@ public class Aluno extends Pessoa{
 		return dao.mostrar(matricula);
 	}
 	
-	public boolean mostrarBoletim(String matricula){
+	public Aluno mostrarBoletim(String matricula){
 		AlunoDAO dao = new AlunoDAO();
 		return dao.mostrarBoletim(matricula);
 	}
@@ -57,6 +67,11 @@ public class Aluno extends Pessoa{
 	public boolean alterar(){
 		AlunoDAO dao = new AlunoDAO();
 		return dao.update(this);
+	}
+	
+	public boolean excluir(String matricula){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.delete(matricula);
 	}
 	
 	public String getMatricula() {
