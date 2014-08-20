@@ -23,5 +23,5 @@ public class Aluno extends Pessoa{
 			System.out.println("O aluno ainda não chegou.");
 	}	
 	
-	
+	//Teste
 }
