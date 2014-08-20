@@ -186,6 +186,7 @@ public class Secretaria {
 			System.out.println("Digite a matricula do aluno que deseja alterar as notas: ");
 			matricula = leitor.next();
 			aluno = new Aluno();
+			
 		}
 		
 		}
