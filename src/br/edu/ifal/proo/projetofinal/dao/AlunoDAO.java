@@ -11,7 +11,7 @@ public class AlunoDAO {
 	
 	public void save(Aluno aluno){
 		String sql = "INSERT INTO aluno(nome,cpf,sexo,idade," +
-				"endereco,cidade,estado) VALUES ('"+aluno.getNome()+"','"+aluno.getCpf()+"','"+aluno.getSexo()+"',"+aluno.getIdade()+",'"+aluno.getEndereco()+"','"+aluno.getCidade()+"','"+aluno.getEstado()+"')";
+				"endereco,cidade,estado, matricula, identidade, nivel) VALUES ('"+aluno.getNome()+"','"+aluno.getCpf()+"','"+aluno.getSexo()+"',"+aluno.getIdade()+",'"+aluno.getEndereco()+"','"+aluno.getCidade()+"','"+aluno.getEstado()+"','"+aluno.getMatricula()+"','"+aluno.getRg()+"','"+aluno.getNivel()+"')";
 		System.out.println(sql);
 		ConexaoBD.executa(sql);
 	}

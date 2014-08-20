@@ -35,7 +35,7 @@ public class Secretaria {
 			case 1:
 			//inserirContratante() 
 				System.out.println("Digite o nome do contratante: ");
-				String nome = leitorespaco.next();
+				String nome = leitorespaco.nextLine();
 				System.out.println("Digite o cpf do contratante");
 				String cpf = leitor.next();
 				System.out.println("Digite o sexo do contratante: ");
@@ -43,12 +43,13 @@ public class Secretaria {
 				System.out.println("Digite a idade do contratante: ");
 				int idade = leitor.nextInt();
 				System.out.println("Digite o endereco do contratante: ");
-				String endereco = leitor.next();
+				String endereco = leitorespaco.nextLine();
 				System.out.println("Digite a cidade do contratante: ");
-				String cidade = leitor.next();
+				String cidade = leitorespaco.nextLine();
 				System.out.println("Digite o estado do contratante: ");
-				String estado = leitor.next();
-				Contratante contratante = new Contratante(nome,cpf,sexo,idade,endereco,cidade,estado,0);
+				String estado = leitorespaco.nextLine();
+				int situacao = 0;
+				Contratante contratante = new Contratante(nome,cpf,sexo,idade,endereco,cidade,estado,situacao);
 				contratante.cadastrarContratante();
 			break;
 			
@@ -86,7 +87,7 @@ public class Secretaria {
 				if (contratante.buscar(cpf)){
 		
 					System.out.println("Digite o novo nome: ");
-					nome = leitorespaco.next();
+					nome = leitorespaco.nextLine();
 					System.out.println("Digite o novo sexo: ");
 					sexo = leitor.next();
 					System.out.println("Digite a nova idade: ");
@@ -159,7 +160,7 @@ public class Secretaria {
 			case 5:
 			//cadastrarAluno()
 				System.out.println("Digite o nome do aluno: ");
-				nome = leitorespaco.next();
+				nome = leitorespaco.nextLine();
 				System.out.println("Digite o CPF do aluno: ");
 				cpf = leitor.next();
 				System.out.println("Digite o sexo do aluno: ");
@@ -177,9 +178,26 @@ public class Secretaria {
 				System.out.println("Digite o RG do aluno");
 				int rg = leitor.nextInt();
 				System.out.println("Digite o nivel em que o aluno se encontra (ex: Basic 1; Basic 2, Inter 2)");
-				String nivel = leitor.next();
+				String nivel = leitorespaco.nextLine();
 				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel);
+				aluno.cadastrarAluno();
 			break;
+			
+			case 6:
+				//listarAluno()	
+				aluno = new Aluno();
+				System.out.println("Número de alunos cadastrados: "+aluno.obterQuantidade()+"\n");
+				ArrayList alunos = aluno.listar();
+				System.out.println("|------------ ALUNOS ------------|");
+				for (int i = 0; i < alunos.size(); i++) {
+					Aluno aux = (Aluno) alunos.get(i);
+					System.out.println("  Nome = "+aux.getNome());
+					System.out.println("  Matricula = "+aux.getCpf());
+					System.out.println("|--------------------------------------|");
+				}
+				System.out.println("\n");
+				break;
+				
 			
 			case 7:
 			//inserirNotas()

@@ -1,5 +1,8 @@
 package br.edu.ifal.proo.projetofinal.model;
 
+import java.util.ArrayList;
+
+import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
 import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
 
 public class Aluno extends Pessoa{
@@ -22,11 +25,40 @@ public class Aluno extends Pessoa{
 	public Aluno(){
 	}
 	
-	public void cadastrarContratante (){
+	public void cadastrarAluno (){
 		AlunoDAO alunodao = new AlunoDAO();
 		alunodao.save(this);
 	}
-
+	
+	public void cadastrarContratante (){
+		AlunoDAO dao = new AlunoDAO();
+		dao.save(this);
+	}
+	
+	public int obterQuantidade(){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.count();
+	}
+	
+	public ArrayList listar(){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.findAll();
+	}
+	
+	public boolean buscar(String matricula){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.find(matricula);
+	}
+	
+	public boolean mostrar(String cpf){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.mostrar(cpf);
+	}
+	
+	public boolean alterar(){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.update(this);
+	}
 	
 	public String getMatricula() {
 		return matricula;
