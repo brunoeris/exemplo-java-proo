@@ -1,5 +1,10 @@
 package br.edu.ifal.proo.projetofinal.model;
 
+import java.util.ArrayList;
+
+import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
+import br.edu.ifal.proo.projetofinal.dao.BoletimDAO;
+
 public class Boletim{
 	private String matricula;
 	private double notaA;
@@ -11,6 +16,29 @@ public class Boletim{
 		this.notaA = notaA;
 		this.notaB = notaB;
 		this.media = media;
+	}
+	
+	public Boletim(){
+	}
+	
+	public void cadastrarBoletim (){
+		BoletimDAO dao = new BoletimDAO();
+		dao.save(this);
+	}
+	
+	public boolean buscar(String matricula){
+		BoletimDAO dao = new BoletimDAO();
+		return dao.find(matricula);
+	}
+	
+	public boolean mostrarBoletim(String matricula){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.mostrarBoletim(matricula);
+	}
+	
+	public boolean alterar(){
+		BoletimDAO dao = new BoletimDAO();
+		return dao.update(this);
 	}
 	
 	//getters and setters

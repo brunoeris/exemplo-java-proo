@@ -25,8 +25,11 @@ public class Secretaria {
 			System.out.println("3- PARA ALTERAR UM CONTRATANTE");
 			System.out.println("4- PARA ALTERAR SITUACAO DE PAGAMENTO");
 			System.out.println("5- PARA INSERIR UM ALUNO");
-			System.out.println("6- PARA ALTERAR UM ALUNO");
-			System.out.println("7- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO");
+			System.out.println("6- PARA LISTAR OS ALUNOS");
+			System.out.println("7- PARA ALTERAR UM ALUNO");
+			System.out.println("8- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO");
+			System.out.println("9- PARA ALTERAR NOTAS NO BOLETIM DE UM ALUNO");
+			System.out.println("10- PARA SAIR");
 			
 			opcaoMenu = leitor.nextInt();
 
@@ -88,16 +91,16 @@ public class Secretaria {
 		
 					System.out.println("Digite o novo nome: ");
 					nome = leitorespaco.nextLine();
-					System.out.println("Digite o novo sexo: ");
+					System.out.println("Digite o sexo: ");
 					sexo = leitor.next();
 					System.out.println("Digite a nova idade: ");
 					idade = leitor.nextInt();
 					System.out.println("Digite o novo endereço: ");
-					endereco = leitor.next();
+					endereco = leitorespaco.nextLine();
 					System.out.println("Digite a nova cidade: ");
-					cidade = leitor.next();
+					cidade = leitorespaco.nextLine();
 					System.out.println("Digite o novo estado: ");
-					estado = leitor.next();
+					estado = leitorespaco.nextLine();
 					contratante.setNome(nome);
 					contratante.setCpf(cpf);
 					contratante.setSexo(sexo);
@@ -180,7 +183,10 @@ public class Secretaria {
 				System.out.println("Digite o nivel em que o aluno se encontra (ex: Basic 1; Basic 2, Inter 2)");
 				String nivel = leitorespaco.nextLine();
 				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel);
+				Boletim boletim = new Boletim();
+				boletim.setMatricula(matricula);
 				aluno.cadastrarAluno();
+				boletim.cadastrarBoletim();
 			break;
 			
 			case 6:
@@ -200,11 +206,101 @@ public class Secretaria {
 				
 			
 			case 7:
-			//inserirNotas()
-			System.out.println("Digite a matricula do aluno que deseja alterar as notas: ");
-			matricula = leitor.next();
-			aluno = new Aluno();
+				//alterarAluno()
+				System.out.println("Digite a matricula do aluno qual deseja alterar os dados: ");
+				matricula = leitor.next();
+				aluno = new Aluno();
+				boletim = new Boletim();
+				System.out.println("Aluno a ser alterado:"); 
+				aluno.buscar(matricula);
+				aluno.mostrar(matricula);
+				if (aluno.buscar(matricula)){
+		
+					System.out.println("Digite o novo nome: ");
+					nome = leitorespaco.nextLine();
+					System.out.println("Digite o sexo: ");
+					sexo = leitor.next();
+					System.out.println("Digite a nova idade: ");
+					idade = leitor.nextInt();
+					System.out.println("Digite o novo endereço: ");
+					endereco = leitorespaco.nextLine();
+					System.out.println("Digite a nova cidade: ");
+					cidade = leitorespaco.nextLine();
+					System.out.println("Digite o novo estado: ");
+					estado = leitorespaco.nextLine();
+					System.out.println("Digite o novo nivel: ");
+					nivel = leitorespaco.nextLine();
+					aluno.setNome(nome);
+					aluno.setMatricula(matricula);
+					aluno.setSexo(sexo);
+					aluno.setIdade(idade);
+					aluno.setEndereco(endereco);
+					aluno.setCidade(cidade);
+					aluno.setEstado(estado);
+					aluno.setNivel(nivel);
+					boletim.setMatricula(matricula);
+					if (aluno.alterar())
+						System.out.println("Alterado com sucesso!");
+					else
+						System.out.println("Erro na alteração!");
+				}
+				else
+					System.out.println("Aluno "+matricula+" não encontrado!");
+			break;
 			
+			case 8:
+				//cadastrarBoletim()
+					System.out.println("Digite a matricula do aluno no qual deseja cadastrar notas: ");
+					matricula = leitor.next();
+					boletim = new Boletim();
+					if (boletim.buscar(matricula)){
+						System.out.println("Digite a Primeira nota do aluno: ");
+						double notaA = leitor.nextDouble();
+						System.out.println("Digite a Segunda nota do aluno: ");
+						double notaB = leitor.nextDouble();
+						double media = (notaA+notaB/2);
+						boletim = new Boletim(notaA,notaB,media);
+						boletim.setMatricula(matricula);
+						boletim.cadastrarBoletim();
+						if (boletim.alterar())
+							System.out.println("Alterado com sucesso!");
+						else
+							System.out.println("Erro na alteração!");
+					}
+					else
+						System.out.println("Aluno "+matricula+" não encontrado!");
+				break;
+				
+			case 9:
+				//alterarBoletim()
+				System.out.println("Digite a matricula do aluno qual deseja alterar as notas: ");
+				matricula = leitor.next();
+				aluno = new Aluno();
+				boletim = new Boletim();
+				System.out.println("Aluno a ser alterado:"); 
+				aluno.buscar(matricula);
+				aluno.mostrar(matricula);
+				boletim.mostrarBoletim(matricula);
+				if (aluno.buscar(matricula)){
+					System.out.println("Digite a nova nota da Primeira Prova: ");
+					System.out.println("Digite a Primeira nota do aluno: ");
+					double notaA = leitor.nextDouble();
+					System.out.println("Digite a Segunda nota do aluno: ");
+					double notaB = leitor.nextDouble();
+					double media = (notaA+notaB/2);
+					boletim.setMatricula(matricula);
+					boletim.setNotaA(notaA);
+					boletim.setNotaB(notaB);
+					boletim.setMedia(media);
+					if (boletim.alterar())
+						System.out.println("Alterado com sucesso!");
+					else
+						System.out.println("Erro na alteração!");
+				}
+				else
+					System.out.println("Aluno "+matricula+" não encontrado!");
+			break;
+				
 		}
 		
 		}

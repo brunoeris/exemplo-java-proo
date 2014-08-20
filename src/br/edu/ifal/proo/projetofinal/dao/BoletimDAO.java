@@ -8,7 +8,7 @@ import br.edu.ifal.proo.projetofinal.model.Boletim;
 
 public class BoletimDAO {
 	public void save(Boletim boletim){
-		String sql = "INSERT INTO boletim(matriculab, notaa, notab, media) VALUES ('"+boletim.getMatricula()+"',"+boletim.getNotaA()+","+boletim.getNotaB()+","+boletim.getMedia()+")";
+		String sql = "INSERT INTO boletim(notaa, notab, media) VALUES ('"+boletim.getNotaA()+"','"+boletim.getNotaB()+"','"+boletim.getMedia()+"')";
 		System.out.println(sql);
 		ConexaoBD.executa(sql);
 	}
@@ -19,8 +19,8 @@ public class BoletimDAO {
 		return ConexaoBD.executa(sql);
 	}
 
-	public boolean find(String cpf) {
-		String sql = "SELECT * FROM contratante WHERE cpf="+cpf;
+	public boolean find(String matricula) {
+		String sql = "SELECT * FROM boletim WHERE matriculab="+matricula;
 		ResultSet resultado = ConexaoBD.consulta(sql);
 		try {
 			if (resultado.next()){

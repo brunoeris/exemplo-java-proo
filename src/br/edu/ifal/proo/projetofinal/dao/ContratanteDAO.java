@@ -63,7 +63,7 @@ public class ContratanteDAO {
 	}
 	
 	public boolean update(Contratante contratante){
-		String sql = "UPDATE contratante SET nome = '"+contratante.getNome()+"', sexo ='"+contratante.getSexo()+", idade = "+contratante.getIdade()+"', endereco ='"+contratante.getEndereco()+"', cidade ='"+contratante.getCidade()+ "', estado ='"+contratante.getEstado()+"' WHERE cpf = "+contratante.getCpf();
+		String sql = "UPDATE contratante SET nome = '"+contratante.getNome()+"', sexo ='"+contratante.getSexo()+"', idade ='"+contratante.getIdade()+"', endereco ='"+contratante.getEndereco()+"', cidade ='"+contratante.getCidade()+ "', estado ='"+contratante.getEstado()+"' WHERE cpf = "+contratante.getCpf();
 		System.out.println(sql);
 		return ConexaoBD.executa(sql);
 	}

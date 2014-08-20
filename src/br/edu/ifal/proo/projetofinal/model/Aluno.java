@@ -3,7 +3,6 @@ package br.edu.ifal.proo.projetofinal.model;
 import java.util.ArrayList;
 
 import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
-import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
 
 public class Aluno extends Pessoa{
 
@@ -30,11 +29,6 @@ public class Aluno extends Pessoa{
 		alunodao.save(this);
 	}
 	
-	public void cadastrarContratante (){
-		AlunoDAO dao = new AlunoDAO();
-		dao.save(this);
-	}
-	
 	public int obterQuantidade(){
 		AlunoDAO dao = new AlunoDAO();
 		return dao.count();
@@ -50,9 +44,14 @@ public class Aluno extends Pessoa{
 		return dao.find(matricula);
 	}
 	
-	public boolean mostrar(String cpf){
+	public boolean mostrar(String matricula){
 		AlunoDAO dao = new AlunoDAO();
-		return dao.mostrar(cpf);
+		return dao.mostrar(matricula);
+	}
+	
+	public boolean mostrarBoletim(String matricula){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.mostrarBoletim(matricula);
 	}
 	
 	public boolean alterar(){

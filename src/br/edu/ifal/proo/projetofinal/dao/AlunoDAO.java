@@ -6,14 +6,17 @@ import java.util.ArrayList;
 
 import br.edu.ifal.proo.projetofinal.bd.ConexaoBD;
 import br.edu.ifal.proo.projetofinal.model.Aluno;
+import br.edu.ifal.proo.projetofinal.model.Boletim;
 
 public class AlunoDAO {
 	
 	public void save(Aluno aluno){
 		String sql = "INSERT INTO aluno(nome,cpf,sexo,idade," +
 				"endereco,cidade,estado, matricula, identidade, nivel) VALUES ('"+aluno.getNome()+"','"+aluno.getCpf()+"','"+aluno.getSexo()+"',"+aluno.getIdade()+",'"+aluno.getEndereco()+"','"+aluno.getCidade()+"','"+aluno.getEstado()+"','"+aluno.getMatricula()+"','"+aluno.getRg()+"','"+aluno.getNivel()+"')";
+		String sql1 = "INSERT INTO boletim (matriculab) VALUES('"+aluno.getMatricula()+"')";
 		System.out.println(sql);
 		ConexaoBD.executa(sql);
+		ConexaoBD.executa(sql1);
 	}
 	
 	//listarContratantes()
@@ -58,13 +61,13 @@ public class AlunoDAO {
 	}
 	
 	public boolean update(Aluno aluno){
-		String sql = "UPDATE aluno SET nome = '"+aluno.getNome()+"', sexo ='"+aluno.getSexo()+", idade = "+aluno.getIdade()+"', endereco ='"+aluno.getEndereco()+"', cidade ='"+aluno.getCidade()+ "', estado ='"+aluno.getEstado()+"' WHERE matricula = "+aluno.getMatricula();
+		String sql = "UPDATE aluno SET nome = '"+aluno.getNome()+"', sexo ='"+aluno.getSexo()+"', idade = '"+aluno.getIdade()+"', endereco ='"+aluno.getEndereco()+"', cidade ='"+aluno.getCidade()+ "', estado ='"+aluno.getEstado()+"', nivel='"+aluno.getNivel()+"' WHERE matricula = "+aluno.getMatricula();
 		System.out.println(sql);
 		return ConexaoBD.executa(sql);
 	}
 
-	public boolean find(String cpf) {
-		String sql = "SELECT * FROM contratante WHERE cpf="+cpf;
+	public boolean find(String matricula) {
+		String sql = "SELECT * FROM aluno WHERE matricula="+matricula;
 		ResultSet resultado = ConexaoBD.consulta(sql);
 		try {
 			if (resultado.next()){
@@ -95,14 +98,23 @@ public class AlunoDAO {
 	}
 	
 	public boolean mostrarBoletim(String matricula){
-		String sql = "SELECT * FROM aluno WHERE matricula="+matricula;
+		Aluno aluno = new Aluno();
+		String sql = "SELECT aluno.* FROM aluno INNER JOIN boletim ON aluno.matricula="+matricula+"= boletim.matriculab ORDER BY aluno.nome='"+aluno.getNome();
 		ResultSet resultado = ConexaoBD.consulta(sql);
 		try {
 			if (resultado.next()){
 				String nome = resultado.getString("nome");
 				matricula = resultado.getString("matricula");
+				double notaA = resultado.getDouble("notaa");
+				double notaB = resultado.getDouble("notab");
+				double media = resultado.getDouble("media");
+				System.out.println("|----------------- BOLETIM -----------------|");
 				System.out.println("Nome: "+nome);
 				System.out.println("Matricula: "+matricula);
+				System.out.println("Nota da Primeira Prova: "+notaA);
+				System.out.println("Nota da Segunda Prova: "+notaB);
+				System.out.println("Media: "+media);
+				System.out.println("|-------------------------------------------|");
 				return true;
 			}
 		} catch (SQLException e) {
