@@ -46,7 +46,8 @@ public class ContratanteDAO {
 				String endereco = resultado.getString("endereco");
 				String cidade = resultado.getString("cidade");
 				String estado = resultado.getString("estado");
-				Contratante aux = new Contratante(nome, cpf, sexo, idade, endereco, cidade, estado);
+				int pago = resultado.getInt("situacao");
+ 				Contratante aux = new Contratante(nome, cpf, sexo, idade, endereco, cidade, estado, pago);
 				contratantes.add(aux);
 			}
 		}catch (SQLException e) {
@@ -56,8 +57,14 @@ public class ContratanteDAO {
 
 	}
 	
+	public boolean updatePgto(Contratante contratante){
+		String sql = "UPDATE contratante SET situacao = "+contratante.getPagamento()+" WHERE cpf = "+contratante.getCpf();
+		System.out.println(sql);
+		return ConexaoBD.executa(sql);
+	}
+	
 	public boolean update(Contratante contratante){
-		String sql = "UPDATE contratante SET nome = '"+contratante.getNome()+"', sexo ='"+contratante.getSexo()+", idade ="+contratante.getIdade()+"', endereco ='"+contratante.getEndereco()+"', cidade ='"+contratante.getCidade()+ "', estado ='"+contratante.getEstado()+"'WHERE cpf = "+contratante.getCpf();
+		String sql = "UPDATE contratante SET nome = '"+contratante.getNome()+"', sexo ='"+contratante.getSexo()+", idade = "+contratante.getIdade()+"', endereco ='"+contratante.getEndereco()+"', cidade ='"+contratante.getCidade()+ "', estado ='"+contratante.getEstado()+"' WHERE cpf = "+contratante.getCpf();
 		System.out.println(sql);
 		return ConexaoBD.executa(sql);
 	}

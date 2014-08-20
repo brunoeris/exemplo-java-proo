@@ -6,11 +6,12 @@ import br.edu.ifal.proo.projetofinal.dao.ContratanteDAO;
 
 public class Contratante extends Pessoa {
 
-	private boolean pagamento;
+	private int pagamento;
 	
 	public Contratante(String nome, String cpf, String sexo, int idade,
-			String endereco, String cidade, String estado) {
+			String endereco, String cidade, String estado, int pagamento) {
 		super(nome, cpf, sexo, idade, endereco, cidade, estado);
+		pagamento = this.pagamento;
 	}
 	
 	
@@ -47,21 +48,21 @@ public class Contratante extends Pessoa {
 		return dao.update(this);
 	}
 	
-	public void pago(){
-		if (pagamento == true)
-			System.out.println("Pagamento OK!");
-		else
-			System.out.println("Pagamento em atraso.");
+	public boolean alterarPgto(){
+		ContratanteDAO dao = new ContratanteDAO();
+		return dao.updatePgto(this);
 	}
-	
-	//get e set
-	public boolean isPagamento() {
+
+
+	public int getPagamento() {
 		return pagamento;
 	}
 
-	public void setPagamento(boolean pagamento) {
+
+	public void setPagamento(int pagamento) {
 		this.pagamento = pagamento;
 	}
+	
 	
 	
 }
