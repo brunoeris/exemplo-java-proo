@@ -73,7 +73,7 @@ public class AlunoDAO {
 			if (resultado.next()){
 				return true;
 			}
-		} catch (SQLException e) {
+		} catch (SQLException e) {	
 			System.err.println(e);
 		}
 		return false;
@@ -97,18 +97,28 @@ public class AlunoDAO {
 
 	}
 	
-	public Aluno mostrarBoletim(String matricula){
-		Aluno aluno = new Aluno();
+	public Aluno mostrarBoletim(String matricula){	
 		String sql = "SELECT * FROM aluno INNER JOIN boletim ON aluno.matricula = boletim.matriculab WHERE aluno.matricula="+matricula;
 		ResultSet resultado = ConexaoBD.consulta(sql);
+		Aluno aluno = new Aluno();
+		Boletim boletim = new Boletim();
 		try {
 			if (resultado.next()){
-				String nome = resultado.getString("n");
-				matricula = resultado.getString("matricula");
-				double notaA = resultado.getDouble("notaa");
-				double notaB = resultado.getDouble("notab");
-				double media = resultado.getDouble("media");
-				aluno= new Aluno(nome,matricula,notaA,notaB,media);
+				aluno.setNome(resultado.getString("nome"));
+				aluno.setMatricula(resultado.getString("matricula"));
+				aluno.getBoletim().setNotaA(resultado.getDouble("notaa"));
+				aluno.getBoletim().setNotaB(resultado.getDouble("notab"));
+				aluno.getBoletim().setMedia(resultado.getDouble("media"));
+				System.out.println("|----------------- BOLETIM -----------------|");
+				System.out.println("Nome: "+aluno.getNome());
+				System.out.println("Matricula: "+aluno.getMatricula());
+				boletim = aluno.getBoletim();
+				boletim.setMatricula(resultado.getString("matricula"));
+				System.out.println("Nota da Primeira Prova: "+aluno.getBoletim().getNotaA());
+				System.out.println("Nota da Segunda Prova: "+aluno.getBoletim().getNotaB());
+				System.out.println("Media: "+aluno.getBoletim().getMedia());
+				System.out.println("|-------------------------------------------|");
+				return aluno;
 			}
 		} catch (SQLException e) {
 			System.err.println(e);
@@ -119,6 +129,8 @@ public class AlunoDAO {
 	
 	public boolean delete(String matricula){
 		String sql = "DELETE FROM aluno WHERE matricula="+matricula;
+		String sql0 = "DELETE FROM boletim  WHERE matriculab="+matricula;
+		ConexaoBD.executa(sql0);
 		return ConexaoBD.executa(sql);
 	}
 

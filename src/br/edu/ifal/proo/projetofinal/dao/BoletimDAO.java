@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.edu.ifal.proo.projetofinal.bd.ConexaoBD;
+import br.edu.ifal.proo.projetofinal.model.Aluno;
 import br.edu.ifal.proo.projetofinal.model.Boletim;
 
 public class BoletimDAO {

@@ -3,7 +3,7 @@ package br.edu.ifal.proo.projetofinal.model;
 import java.util.ArrayList;
 
 import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
-import br.edu.ifal.proo.projetofinal.dao.BoletimDAO;
+import br.edu.ifal.proo.projetofinal.model.Boletim;
 
 public class Aluno extends Pessoa{
 
@@ -23,15 +23,14 @@ public class Aluno extends Pessoa{
 	}
 	
 	public Aluno(){
+	this.boletim = new Boletim();
 	}
 	
 	public Aluno(String nome, String matricula, double notaA, double notaB,
 			double media) {
 		this.nome = nome;
 		this.matricula = matricula;
-		boletim.setNotaA(notaA);
-		boletim.setNotaB(notaB);
-		boletim.setMedia(media);
+		this.boletim = new Boletim(notaA,notaB,media);
 	}
 
 	public void cadastrarAluno (){

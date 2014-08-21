@@ -21,20 +21,21 @@ public class Secretaria {
 			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?'");
 			System.out.println("MENU");
 			System.out.println("1- PARA INSERIR CONTRATANTE");
-			System.out.println("2- PARA LISTAR OS CONTRATANTES (INCOMPLETO)");
+			System.out.println("2- PARA LISTAR OS CONTRATANTES");
 			System.out.println("3- PARA ALTERAR UM CONTRATANTE");
 			System.out.println("4- PARA EXCLUIR UM CONTRATANTE");
 			System.out.println("5- PARA ALTERAR SITUACAO DE PAGAMENTO");
 			System.out.println("6- PARA INSERIR UM ALUNO");
 			System.out.println("7- PARA LISTAR OS ALUNOS");
 			System.out.println("8- PARA ALTERAR UM ALUNO");
-			System.out.println("9- PARA EXCLUIR UM ALUNO");
+			System.out.println("9- PARA EXCLUIR UM ALUNO E SEU BOLETIM");
 			System.out.println("10- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO");
-			System.out.println("11- PARA ALTERAR NOTAS NO BOLETIM DE UM ALUNO (INCOMPLETO)");
-			System.out.println("12- PARA INSERIR UM PROFESSOR");
-			System.out.println("13- PARA LISTAR OS PORFESSORES");
-			System.out.println("14- PARA ALTERAR UM PROFESSOR");
-			System.out.println("15- PARA EXCLUIR UM PROFESSOR");
+			System.out.println("11- PARA ALTERAR NOTAS NO BOLETIM DE UM ALUNO");
+			System.out.println("12- PARA MOSTRAR NOTAS DE UM ALUNO");
+			System.out.println("13- PARA INSERIR UM PROFESSOR");
+			System.out.println("14- PARA LISTAR OS PORFESSORES");
+			System.out.println("15- PARA ALTERAR UM PROFESSOR");
+			System.out.println("16- PARA EXCLUIR UM PROFESSOR");
 			System.out.println("20- PARA SAIR");
 			
 			opcaoMenu = leitor.nextInt();
@@ -64,7 +65,6 @@ public class Secretaria {
 			
 			case 2:
 			//listarContratante()	
-			int pago;
 			contratante = new Contratante();
 			System.out.println("Número de contratantes cadastrados: "+contratante.obterQuantidade()+"\n");
 			ArrayList contratantes = contratante.listar();
@@ -73,8 +73,10 @@ public class Secretaria {
 				Contratante aux = (Contratante) contratantes.get(i);
 				System.out.println("  Nome = "+aux.getNome());
 				System.out.println("  Matricula = "+aux.getCpf());
-				if (aux.getPagamento() == 1 )
+				System.out.println("  Pagamento = "+aux.getSituacao());
+				if (aux.getSituacao() == 1 ){	
 					System.out.println("  Situação do pagamento = PAGO!");
+				}
 				else
 					System.out.println("  Situação do pagamento = EM DÉBITO");
 				System.out.println("|--------------------------------------|");
@@ -151,15 +153,15 @@ public class Secretaria {
 					System.out.println(contratante.getNome());
 					
 					System.out.println("Digite a nova situação de pagamento: (1- PAGO 2-EM DÉBITO)");
-					pago = leitor.nextInt();
+					int pago = leitor.nextInt();
 									
 					int pagto;
 					if(pago == 1){
 						pagto = 1;						
-						contratante.setPagamento(pagto);
+						contratante.setSituacao(pagto);
 					}
 					
-					System.out.println(contratante.getPagamento());
+					System.out.println(contratante.getSituacao());
 					
 					if (contratante.alterarPgto())
 						System.out.println("Alterado com sucesso!");
@@ -168,7 +170,7 @@ public class Secretaria {
 					
 					System.out.println("Nova situação de pagamento de: "+contratante.getNome());
 					
-					if(contratante.getPagamento() == 1)
+					if(contratante.getSituacao() == 1)
 						System.out.println("PAGO!");
 					else
 						System.out.println("EM DÉBITO");			
@@ -216,7 +218,7 @@ public class Secretaria {
 				for (int i = 0; i < alunos.size(); i++) {
 					Aluno aux = (Aluno) alunos.get(i);
 					System.out.println("  Nome = "+aux.getNome());
-					System.out.println("  Matricula = "+aux.getCpf());
+					System.out.println("  Matricula = "+aux.getMatricula());
 					System.out.println("|--------------------------------------|");
 				}
 				System.out.println("\n");
@@ -282,7 +284,7 @@ public class Secretaria {
 				break;
 				
 			case 10:
-				//cadastrarBoletim()
+			//cadastrarBoletim()
 					System.out.println("Digite a matricula do aluno no qual deseja cadastrar notas: ");
 					matricula = leitor.next();
 					boletim = new Boletim();
@@ -291,7 +293,7 @@ public class Secretaria {
 						double notaA = leitor.nextDouble();
 						System.out.println("Digite a Segunda nota do aluno: ");
 						double notaB = leitor.nextDouble();
-						double media = (notaA+notaB/2);
+						double media = ((notaA+notaB)/2);
 						boletim = new Boletim(notaA,notaB,media);
 						boletim.setMatricula(matricula);
 						boletim.cadastrarBoletim();
@@ -305,31 +307,33 @@ public class Secretaria {
 				break;
 				
 			case 11:
-				//alterarBoletim()
+			//alterarBoletim()
 				System.out.println("Digite a matricula do aluno qual deseja alterar as notas: ");
 				matricula = leitor.next();
 				aluno = new Aluno();
 				boletim = new Boletim();
-				if (boletim.buscar(matricula)){
-					System.out.println("Aluno a ser alterado:"); 
-					boletim.buscar(matricula);
-					aluno = aluno.mostrarBoletim(matricula);
-					System.out.println("|----------------- BOLETIM -----------------|");
-					System.out.println("Nome: "+aluno.getNome());
-					System.out.println("Matricula: "+aluno.getMatricula());
-					System.out.println("Nota da Primeira Prova: "+boletim.getNotaA());
-					System.out.println("Nota da Segunda Prova: "+boletim.getNotaB());
-					System.out.println("Media: "+boletim.getMedia());
-					System.out.println("|-------------------------------------------|");
+				System.out.println("Aluno a ser alterado:"); 
+				aluno.buscar(matricula);
+				aluno = aluno.mostrarBoletim(matricula);
+				if (aluno.buscar(matricula)){		
 					System.out.println("Digite a nova Primeira nota do aluno: ");
 					double notaA = leitor.nextDouble();
 					System.out.println("Digite a Segunda nota do aluno: ");
 					double notaB = leitor.nextDouble();
 					double media = ((notaA+notaB)/2);
-					boletim.setMatricula(matricula);
-					boletim.setNotaA(notaA);
-					boletim.setNotaB(notaB);
-					boletim.setMedia(media);
+					aluno.getBoletim().setMatricula(matricula);
+					aluno.getBoletim().setNotaA(notaA);
+					aluno.getBoletim().setNotaB(notaB);
+					aluno.getBoletim().setMedia(media);
+					System.out.println("|----------------- BOLETIM -----------------|");
+					System.out.println("Nome: "+aluno.getNome());
+					System.out.println("Matricula: "+aluno.getMatricula());
+					boletim = aluno.getBoletim();
+					System.out.println("Nota da Primeira Prova: "+aluno.getBoletim().getNotaA());
+					System.out.println("Nota da Segunda Prova: "+aluno.getBoletim().getNotaB());
+					System.out.println("Media: "+aluno.getBoletim().getMedia());
+					System.out.println("|-------------------------------------------|");					
+					
 					if (boletim.alterar())
 						System.out.println("Alterado com sucesso!");
 					else
@@ -340,6 +344,18 @@ public class Secretaria {
 			break;
 			
 			case 12:
+			//mostrarBoletims()
+				System.out.println("Digite a matricula do aluno qual deseja ver o boletim: ");
+				matricula = leitor.next();
+				aluno = new Aluno();
+				aluno.buscar(matricula);
+				if(aluno.buscar(matricula))
+					aluno = aluno.mostrarBoletim(matricula);
+				else
+					System.out.println("Aluno "+matricula+" não encontrado!");
+			break;
+			
+			case 13:
 			//inserirProfessor() 
 				System.out.println("Digite o nome do professor: ");
 				nome = leitorespaco.nextLine();
@@ -359,7 +375,7 @@ public class Secretaria {
 				professor.cadastrarProfessor();
 			break;
 			
-			case 13:
+			case 14:
 			//listarProfessor()	
 				professor = new Professor();
 				System.out.println("Número de professores cadastrados: "+professor.obterQuantidade()+"\n");
@@ -374,7 +390,7 @@ public class Secretaria {
 				System.out.println("\n");
 			break;
 			
-			case 14:
+			case 15:
 			//alterarProfessor()
 				System.out.println("Digite o cpf do professor no qual deseja alterar os dados: ");
 				cpf = leitor.next();
@@ -412,7 +428,7 @@ public class Secretaria {
 					System.out.println("Professor "+cpf+" não encontrado!");
 			break;
 			
-			case 15:
+			case 16:
 			//excluirProfessor()
 				System.out.println("Digite o cpf do professor que deseja excluir: ");
 				cpf = leitor.next();

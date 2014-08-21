@@ -7,12 +7,12 @@ import br.edu.ifal.proo.projetofinal.dao.ContratanteDAO;
 
 public class Contratante extends Pessoa {
 
-	private int pagamento;
+	private int situacao;
 	
 	public Contratante(String nome, String cpf, String sexo, int idade,
-			String endereco, String cidade, String estado, int pagamento) {
+			String endereco, String cidade, String estado, int situacao) {
 		super(nome, cpf, sexo, idade, endereco, cidade, estado);
-		pagamento = this.pagamento;
+		this.situacao = situacao;
 	}
 	
 	
@@ -59,13 +59,13 @@ public class Contratante extends Pessoa {
 		return dao.delete(cpf);
 	}
 
-	public int getPagamento() {
-		return pagamento;
+	public int getSituacao() {
+		return situacao;
 	}
 
 
-	public void setPagamento(int pagamento) {
-		this.pagamento = pagamento;
+	public void setSituacao(int situacao) {
+		this.situacao = situacao;
 	}
 	
 	

@@ -12,7 +12,7 @@ public class ContratanteDAO {
 	
 	public void save(Contratante contratante){
 		String sql = "INSERT INTO contratante(nome,cpf,sexo,idade," +
-				"endereco,cidade,estado, situacao) VALUES ('"+contratante.getNome()+"','"+contratante.getCpf()+"','"+contratante.getSexo()+"',"+contratante.getIdade()+",'"+contratante.getEndereco()+"','"+contratante.getCidade()+"','"+contratante.getEstado()+"',"+contratante.getPagamento()+")";
+				"endereco,cidade,estado, situacao) VALUES ('"+contratante.getNome()+"','"+contratante.getCpf()+"','"+contratante.getSexo()+"',"+contratante.getIdade()+",'"+contratante.getEndereco()+"','"+contratante.getCidade()+"','"+contratante.getEstado()+"',"+contratante.getSituacao()+")";
 		System.out.println(sql);
 		ConexaoBD.executa(sql);
 	}
@@ -44,9 +44,9 @@ public class ContratanteDAO {
 				int idade = resultado.getInt("idade");
 				String endereco = resultado.getString("endereco");
 				String cidade = resultado.getString("cidade");
+				int situacao = resultado.getInt("situacao");
 				String estado = resultado.getString("estado");
-				int pago = resultado.getInt("situacao");
- 				Contratante aux = new Contratante(nome, cpf, sexo, idade, endereco, cidade, estado, pago);
+ 				Contratante aux = new Contratante(nome, cpf, sexo, idade, endereco, cidade, estado, situacao);
 				contratantes.add(aux);
 			}
 		}catch (SQLException e) {
@@ -57,7 +57,7 @@ public class ContratanteDAO {
 	}
 	
 	public boolean updatePgto(Contratante contratante){
-		String sql = "UPDATE contratante SET situacao = "+contratante.getPagamento()+" WHERE cpf = "+contratante.getCpf();
+		String sql = "UPDATE contratante SET situacao = '"+contratante.getSituacao()+"' WHERE cpf = "+contratante.getCpf();
 		System.out.println(sql);
 		return ConexaoBD.executa(sql);
 	}
