@@ -88,8 +88,19 @@ public class ContratanteDAO {
 			if (resultado.next()){
 				String nome = resultado.getString("nome");
 				cpf = resultado.getString("cpf");
-				System.out.println("Nome: "+nome);
-				System.out.println("CPF: "+cpf);
+				String sexo = resultado.getString("sexo");
+				int idade = resultado.getInt("idade");
+				String endereco = resultado.getString("endereco");
+				String cidade = resultado.getString("cidade");
+				String estado = resultado.getString("estado");
+				int situacao = resultado.getInt("situacao");
+				System.out.println("  Nome : "+nome);
+				System.out.println("  CPF : "+cpf);
+				System.out.println("  Sexo: "+sexo);
+				System.out.println("  Idade: "+idade);
+				System.out.println("  Cidade: "+cidade);
+				System.out.println("  Endereco: "+endereco);
+				System.out.println("  Estado: "+estado);
 				return true;
 			}
 		} catch (SQLException e) {

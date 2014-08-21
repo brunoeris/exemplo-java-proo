@@ -18,25 +18,29 @@ public class Secretaria {
 		do{
 				
 			//MENU
-			System.out.println("CURSO DE INGLÊS 'HOW ARE YOU LEARNING?'");
-			System.out.println("MENU");
-			System.out.println("1- PARA INSERIR CONTRATANTE");
-			System.out.println("2- PARA LISTAR OS CONTRATANTES");
-			System.out.println("3- PARA ALTERAR UM CONTRATANTE");
-			System.out.println("4- PARA EXCLUIR UM CONTRATANTE");
-			System.out.println("5- PARA ALTERAR SITUACAO DE PAGAMENTO");
-			System.out.println("6- PARA INSERIR UM ALUNO");
-			System.out.println("7- PARA LISTAR OS ALUNOS");
-			System.out.println("8- PARA ALTERAR UM ALUNO");
-			System.out.println("9- PARA EXCLUIR UM ALUNO E SEU BOLETIM");
-			System.out.println("10- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO");
-			System.out.println("11- PARA ALTERAR NOTAS NO BOLETIM DE UM ALUNO");
-			System.out.println("12- PARA MOSTRAR NOTAS DE UM ALUNO");
-			System.out.println("13- PARA INSERIR UM PROFESSOR");
-			System.out.println("14- PARA LISTAR OS PORFESSORES");
-			System.out.println("15- PARA ALTERAR UM PROFESSOR");
-			System.out.println("16- PARA EXCLUIR UM PROFESSOR");
-			System.out.println("20- PARA SAIR");
+			System.out.println("|----------------------------------------------------|");
+			System.out.println("|       CURSO DE INGLÊS 'HOW ARE YOU LEARNING?'      |");
+			System.out.println("|----------------------------------------------------|");
+			System.out.println("|                          MENU                      |");
+			System.out.println("|----------------------------------------------------|");
+			System.out.println("| 1- PARA INSERIR CONTRATANTE                        |");
+			System.out.println("| 2- PARA LISTAR OS CONTRATANTES                     |");
+			System.out.println("| 3- PARA ALTERAR UM CONTRATANTE                     |");
+			System.out.println("| 4- PARA EXCLUIR UM CONTRATANTE                     |");
+			System.out.println("| 5- PARA ALTERAR SITUACAO DE PAGAMENTO              |");
+			System.out.println("| 6- PARA INSERIR UM ALUNO                           |");
+			System.out.println("| 7- PARA LISTAR OS ALUNOS                           |");
+			System.out.println("| 8- PARA ALTERAR UM ALUNO                           |");
+			System.out.println("| 9- PARA EXCLUIR UM ALUNO E SEU BOLETIM             |");
+			System.out.println("| 10- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO      |");
+			System.out.println("| 11- PARA ALTERAR NOTAS NO BOLETIM DE UM ALUNO      |");
+			System.out.println("| 12- PARA MOSTRAR NOTAS DE UM ALUNO                 |");
+			System.out.println("| 13- PARA INSERIR UM PROFESSOR                      |");
+			System.out.println("| 14- PARA LISTAR OS PORFESSORES                     |");
+			System.out.println("| 15- PARA ALTERAR UM PROFESSOR                      |");
+			System.out.println("| 16- PARA EXCLUIR UM PROFESSOR                      |");
+			System.out.println("| 20- PARA SAIR                                      |");
+			System.out.println("|----------------------------------------------------|");
 			
 			opcaoMenu = leitor.nextInt();
 
@@ -71,9 +75,7 @@ public class Secretaria {
 			System.out.println("|------------ CONTRATANTES ------------|");
 			for (int i = 0; i < contratantes.size(); i++) {
 				Contratante aux = (Contratante) contratantes.get(i);
-				System.out.println("  Nome = "+aux.getNome());
-				System.out.println("  Matricula = "+aux.getCpf());
-				System.out.println("  Pagamento = "+aux.getSituacao());
+				contratante.mostrar(aux.getCpf());
 				if (aux.getSituacao() == 1 ){	
 					System.out.println("  Situação do pagamento = PAGO!");
 				}
@@ -186,6 +188,8 @@ public class Secretaria {
 				nome = leitorespaco.nextLine();
 				System.out.println("Digite o CPF do aluno: ");
 				cpf = leitor.next();
+				System.out.println("Digite o CPF do contratante relacionado ao aluno: ");
+				String contratanteCpf = leitor.next();
 				System.out.println("Digite o sexo do aluno: ");
 				sexo = leitor.next();
 				System.out.println("Digite a idade do aluno: ");
@@ -202,7 +206,7 @@ public class Secretaria {
 				int rg = leitor.nextInt();
 				System.out.println("Digite o nivel em que o aluno se encontra (ex: Basic 1; Basic 2, Inter 2)");
 				String nivel = leitorespaco.nextLine();
-				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel);
+				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel, contratanteCpf);
 				Boletim boletim = new Boletim();
 				boletim.setMatricula(matricula);
 				aluno.cadastrarAluno();
@@ -217,9 +221,8 @@ public class Secretaria {
 				System.out.println("|------------ ALUNOS ------------|");
 				for (int i = 0; i < alunos.size(); i++) {
 					Aluno aux = (Aluno) alunos.get(i);
-					System.out.println("  Nome = "+aux.getNome());
-					System.out.println("  Matricula = "+aux.getMatricula());
-					System.out.println("|--------------------------------------|");
+					aluno.mostrar(aux.getMatricula());
+					System.out.println("|--------------------------------|");
 				}
 				System.out.println("\n");
 				break;
@@ -238,6 +241,8 @@ public class Secretaria {
 		
 					System.out.println("Digite o novo nome: ");
 					nome = leitorespaco.nextLine();
+					System.out.println("Digite o novo CPF de contratante: ");
+					contratanteCpf = leitorespaco.nextLine();
 					System.out.println("Digite o sexo: ");
 					sexo = leitor.next();
 					System.out.println("Digite a nova idade: ");
@@ -251,6 +256,7 @@ public class Secretaria {
 					System.out.println("Digite o novo nivel: ");
 					nivel = leitorespaco.nextLine();
 					aluno.setNome(nome);
+					aluno.setContratanteCpf(contratanteCpf);
 					aluno.setMatricula(matricula);
 					aluno.setSexo(sexo);
 					aluno.setIdade(idade);

@@ -12,7 +12,7 @@ public class AlunoDAO {
 	
 	public void save(Aluno aluno){
 		String sql = "INSERT INTO aluno(nome,cpf,sexo,idade," +
-				"endereco,cidade,estado, matricula, identidade, nivel) VALUES ('"+aluno.getNome()+"','"+aluno.getCpf()+"','"+aluno.getSexo()+"',"+aluno.getIdade()+",'"+aluno.getEndereco()+"','"+aluno.getCidade()+"','"+aluno.getEstado()+"','"+aluno.getMatricula()+"','"+aluno.getRg()+"','"+aluno.getNivel()+"')";
+				"endereco,cidade,estado, matricula, identidade, nivel, cpfcontratante) VALUES ('"+aluno.getNome()+"','"+aluno.getCpf()+"','"+aluno.getSexo()+"',"+aluno.getIdade()+",'"+aluno.getEndereco()+"','"+aluno.getCidade()+"','"+aluno.getEstado()+"','"+aluno.getMatricula()+"','"+aluno.getRg()+"','"+aluno.getNivel()+"','"+aluno.getContratanteCpf()+"')";
 		String sql1 = "INSERT INTO boletim (matriculab) VALUES('"+aluno.getMatricula()+"')";
 		System.out.println(sql);
 		ConexaoBD.executa(sql);
@@ -50,7 +50,8 @@ public class AlunoDAO {
 				String matricula = resultado.getString("matricula");
 				int rg = resultado.getInt("identidade");
 				String nivel = resultado.getString("nivel");
- 				Aluno aux = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel);
+				String contratanteCpf = resultado.getString("cpfcontratante");
+ 				Aluno aux = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel,contratanteCpf);
 				alunos.add(aux);
 			}
 		}catch (SQLException e) {
@@ -61,7 +62,7 @@ public class AlunoDAO {
 	}
 	
 	public boolean update(Aluno aluno){
-		String sql = "UPDATE aluno SET nome = '"+aluno.getNome()+"', sexo ='"+aluno.getSexo()+"', idade = '"+aluno.getIdade()+"', endereco ='"+aluno.getEndereco()+"', cidade ='"+aluno.getCidade()+ "', estado ='"+aluno.getEstado()+"', nivel='"+aluno.getNivel()+"' WHERE matricula = "+aluno.getMatricula();
+		String sql = "UPDATE aluno SET nome = '"+aluno.getNome()+"', sexo ='"+aluno.getSexo()+"', idade = '"+aluno.getIdade()+"', endereco ='"+aluno.getEndereco()+"', cidade ='"+aluno.getCidade()+ "', estado ='"+aluno.getEstado()+"', nivel='"+aluno.getNivel()+"', cpfcontratante='"+aluno.getContratanteCpf()+"' WHERE matricula = "+aluno.getMatricula();
 		System.out.println(sql);
 		return ConexaoBD.executa(sql);
 	}
@@ -85,9 +86,25 @@ public class AlunoDAO {
 		try {
 			if (resultado.next()){
 				String nome = resultado.getString("nome");
-				matricula = resultado.getString("matricula");
-				System.out.println("Nome: "+nome);
-				System.out.println("Matricula: "+matricula);
+				String cpf = resultado.getString("cpf");
+				String sexo = resultado.getString("sexo");
+				int idade = resultado.getInt("idade");
+				String endereco = resultado.getString("endereco");
+				String cidade = resultado.getString("cidade");
+				String estado = resultado.getString("estado");
+				int rg = resultado.getInt("identidade");
+				String nivel = resultado.getString("nivel");
+				String contratanteCpf = resultado.getString("cpfcontratante");
+				System.out.println("  Nome = "+nome);
+				System.out.println("  Matricula: "+matricula);
+				System.out.println("  CPF do Contratante: "+contratanteCpf);
+				System.out.println("  Sexo: "+sexo);
+				System.out.println("  Idade: "+idade);
+				System.out.println("  Cidade: "+cidade);
+				System.out.println("  Endereco: "+endereco);
+				System.out.println("  Estado: "+estado);
+				System.out.println("  RG: "+rg);
+				System.out.println("  Nivel: "+nivel);
 				return true;
 			}
 		} catch (SQLException e) {

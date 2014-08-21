@@ -12,14 +12,16 @@ public class Aluno extends Pessoa{
 	private String nivel;
 	private boolean assistindoAula = false;
 	private Boletim boletim;
+	private String contratanteCpf;
 	
 	public Aluno(String nome, String cpf, String sexo, int idade,
 			String endereco, String cidade, String estado,
-			String matricula, int rg, String nivel) {
+			String matricula, int rg, String nivel,String contratanteCpf) {
 		super(nome, cpf, sexo, idade, endereco, cidade, estado);
 		this.matricula = matricula;
 		this.rg = rg;
 		this.nivel = nivel;
+		this.contratanteCpf = contratanteCpf;
 	}
 	
 	public Aluno(){
@@ -103,6 +105,15 @@ public class Aluno extends Pessoa{
 
 	public void setBoletim(Boletim boletim) {
 		this.boletim = boletim;
+	}
+	
+
+	public String getContratanteCpf() {
+		return contratanteCpf;
+	}
+
+	public void setContratanteCpf(String contratanteCpf) {
+		this.contratanteCpf = contratanteCpf;
 	}
 
 	public void assistirAula(){
