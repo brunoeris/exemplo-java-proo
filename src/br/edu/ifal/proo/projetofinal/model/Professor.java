@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 import br.edu.ifal.proo.projetofinal.dao.ProfessorDAO;
 
-public class Professor extends Pessoa{
+public class Professor extends Pessoa implements Verificavel{
 	
-	public boolean ministrandoAula = false;
+	public int ministrandoAula;
 	
 	public Professor(String nome, String cpf, String sexo, int idade,
-			String endereco, String cidade, String estado) {
+			String endereco, String cidade, String estado, int ministrandoAula) {
 		super(nome, cpf, sexo, idade, endereco, cidade, estado);
+		this.ministrandoAula = ministrandoAula;
 	}
 	
 	public Professor(){
@@ -46,15 +47,31 @@ public class Professor extends Pessoa{
 		return dao.update(this);
 	}
 	
+	public boolean alterarPresenca(){
+		ProfessorDAO dao = new ProfessorDAO();
+		return dao.updatePresenca(this);
+	}
+	
 	public boolean excluir(String cpf){
 		ProfessorDAO dao = new ProfessorDAO();
 		return dao.delete(cpf);
 	}
 	
-	public void ministrarAula(){
-		if(ministrandoAula == true)
-			System.out.println("Ministrando aula...");
+	@Override
+	public int verifica(int ministrandoAula) {
+		if(ministrandoAula == 1)
+			System.out.println("  Ministrando aula...");
 		else			
-			System.out.println("Ainda não está em aula.");
+			System.out.println("  Ainda não está em aula.");
+	return ministrandoAula;
 	}
+
+	public int getMinistrandoAula() {
+		return ministrandoAula;
+	}
+
+	public void setMinistrandoAula(int ministrandoAula) {
+		this.ministrandoAula = ministrandoAula;
+	}
+	
 }

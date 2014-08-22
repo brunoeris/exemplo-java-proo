@@ -31,18 +31,20 @@ public class Secretaria {
 			System.out.println("| 6- PARA INSERIR UM ALUNO                           |");
 			System.out.println("| 7- PARA LISTAR OS ALUNOS                           |");
 			System.out.println("| 8- PARA ALTERAR UM ALUNO                           |");
-			System.out.println("| 9- PARA EXCLUIR UM ALUNO E SEU BOLETIM             |");
-			System.out.println("| 10- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO      |");
-			System.out.println("| 11- PARA ALTERAR NOTAS NO BOLETIM DE UM ALUNO      |");
-			System.out.println("| 12- PARA MOSTRAR NOTAS DE UM ALUNO                 |");
-			System.out.println("| 13- PARA INSERIR UM PROFESSOR                      |");
-			System.out.println("| 14- PARA LISTAR OS PORFESSORES                     |");
-			System.out.println("| 15- PARA ALTERAR UM PROFESSOR                      |");
-			System.out.println("| 16- PARA EXCLUIR UM PROFESSOR                      |");
-			System.out.println("| 17- PARA CADASTRAR UMA SALA                        |");
-			System.out.println("| 18- PARA LISTAR  SALAS                             |");
-			System.out.println("| 19- PARA ALTERAR O ESTADO DE UMA SALA              |");
-			System.out.println("| 20- PARA SAIR                                      |");
+			System.out.println("| 9- PARA ALTERAR PRESENCA DE ALUNO                  |");
+			System.out.println("| 10- PARA EXCLUIR UM ALUNO E SEU BOLETIM            |");
+			System.out.println("| 11- PARA INSERIR NOTAS NO BOLETIM DE UM ALUNO      |");
+			System.out.println("| 12- PARA ALTERAR NOTAS NO BOLETIM DE UM ALUNO      |");
+			System.out.println("| 13- PARA MOSTRAR NOTAS DE UM ALUNO                 |");
+			System.out.println("| 14- PARA INSERIR UM PROFESSOR                      |");
+			System.out.println("| 15- PARA LISTAR OS PORFESSORES                     |");
+			System.out.println("| 16- PARA ALTERAR UM PROFESSOR                      |");
+			System.out.println("| 17- PARA EDITAR A PRESENCA UM PROFESSOR            |");
+			System.out.println("| 18- PARA EXCLUIR UM PROFESSOR                      |");
+			System.out.println("| 19- PARA CADASTRAR UMA SALA                        |");
+			System.out.println("| 20- PARA LISTAR  SALAS                             |");
+			System.out.println("| 21- PARA ALTERAR O ESTADO DE UMA SALA              |");
+			System.out.println("| 22- PARA SAIR                                      |");
 			System.out.println("|----------------------------------------------------|");
 			
 			opcaoMenu = leitor.nextInt();
@@ -78,12 +80,9 @@ public class Secretaria {
 			System.out.println("|------------ CONTRATANTES ------------|");
 			for (int i = 0; i < contratantes.size(); i++) {
 				Contratante aux = (Contratante) contratantes.get(i);
+				Verificavel c = aux;
 				contratante.mostrar(aux.getCpf());
-				if (aux.getSituacao() == 1 ){	
-					System.out.println("  Situação do pagamento = PAGO!");
-				}
-				else
-					System.out.println("  Situação do pagamento = EM DÉBITO");
+				c.verifica(aux.getSituacao());
 				System.out.println("|--------------------------------------|");
 			}
 			System.out.println("\n");
@@ -97,8 +96,8 @@ public class Secretaria {
 				System.out.println("Contratante a ser alterado:"); 
 				contratante.buscar(cpf);
 				contratante.mostrar(cpf);
+				
 				if (contratante.buscar(cpf)){
-		
 					System.out.println("Digite o novo nome: ");
 					nome = leitorespaco.nextLine();
 					System.out.println("Digite o sexo: ");
@@ -209,7 +208,8 @@ public class Secretaria {
 				int rg = leitor.nextInt();
 				System.out.println("Digite o nivel em que o aluno se encontra (ex: Basic 1; Basic 2, Inter 2)");
 				String nivel = leitorespaco.nextLine();
-				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel, contratanteCpf);
+				int presenca = 0;
+				Aluno aluno = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel, contratanteCpf,presenca);
 				Boletim boletim = new Boletim();
 				boletim.setMatricula(matricula);
 				aluno.cadastrarAluno();
@@ -219,12 +219,14 @@ public class Secretaria {
 			case 7:
 				//listarAluno()	
 				aluno = new Aluno();
+				Verificavel a = aluno;
 				System.out.println("Número de alunos cadastrados: "+aluno.obterQuantidade()+"\n");
 				ArrayList alunos = aluno.listar();
 				System.out.println("|------------ ALUNOS ------------|");
 				for (int i = 0; i < alunos.size(); i++) {
 					Aluno aux = (Aluno) alunos.get(i);
 					aluno.mostrar(aux.getMatricula());
+					a.verifica(aux.getPresenca());
 					System.out.println("|--------------------------------|");
 				}
 				System.out.println("\n");
@@ -241,7 +243,6 @@ public class Secretaria {
 				aluno.buscar(matricula);
 				aluno.mostrar(matricula);
 				if (aluno.buscar(matricula)){
-		
 					System.out.println("Digite o novo nome: ");
 					nome = leitorespaco.nextLine();
 					System.out.println("Digite o novo CPF de contratante: ");
@@ -267,9 +268,10 @@ public class Secretaria {
 					aluno.setCidade(cidade);
 					aluno.setEstado(estado);
 					aluno.setNivel(nivel);
+					aluno.setPresenca(0);
 					boletim.setMatricula(matricula);
 					if (aluno.alterar())
-						System.out.println("Alterado com sucesso!");
+					System.out.println("Alterado com sucesso!");
 					else
 						System.out.println("Erro na alteração!");
 				}
@@ -278,6 +280,28 @@ public class Secretaria {
 			break;
 			
 			case 9:
+				//alteraPresenca()
+					System.out.println("Digite a matricula do aluno qual deseja alterar os dados: ");
+					matricula = leitor.next();
+					aluno = new Aluno();
+					System.out.println("Aluno a ser alterado:"); 
+					aluno.buscar(matricula);
+					aluno.mostrar(matricula);
+					if(aluno.buscar(matricula)){
+						System.out.println("Digite:\n1-SE O ALUNO ESTIVER PRESENTE\n0-SE O ALUNO ESTIVER AUSENTE");
+						presenca = leitor.nextInt();
+						aluno.setPresenca(presenca);
+						aluno.setMatricula(matricula);
+						if (aluno.alterarPresenca())
+							System.out.println("Alterado com sucesso!");
+						else
+							System.out.println("Erro na alteração!");
+					}
+				else
+					System.out.println("Aluno "+matricula+" não encontrado!");
+				break;
+			
+			case 10:
 			//excluirAluno()
 				System.out.println("Digite a matrícula do aluno que deseja excluir: ");
 				matricula = leitor.next();
@@ -292,7 +316,7 @@ public class Secretaria {
 					System.out.println("Aluno "+matricula+" não encontrado!");
 				break;
 				
-			case 10:
+			case 11:
 			//cadastrarBoletim()
 					System.out.println("Digite a matricula do aluno no qual deseja cadastrar notas: ");
 					matricula = leitor.next();
@@ -315,7 +339,7 @@ public class Secretaria {
 						System.out.println("Aluno "+matricula+" não encontrado!");
 				break;
 				
-			case 11:
+			case 12:
 			//alterarBoletim()
 				System.out.println("Digite a matricula do aluno qual deseja alterar as notas: ");
 				matricula = leitor.next();
@@ -352,7 +376,7 @@ public class Secretaria {
 					System.out.println("Aluno "+matricula+" não encontrado!");
 			break;
 			
-			case 12:
+			case 13:
 			//mostrarBoletims()
 				System.out.println("Digite a matricula do aluno qual deseja ver o boletim: ");
 				matricula = leitor.next();
@@ -364,7 +388,7 @@ public class Secretaria {
 					System.out.println("Aluno "+matricula+" não encontrado!");
 			break;
 			
-			case 13:
+			case 14:
 			//inserirProfessor() 
 				System.out.println("Digite o nome do professor: ");
 				nome = leitorespaco.nextLine();
@@ -380,13 +404,15 @@ public class Secretaria {
 				cidade = leitorespaco.nextLine();
 				System.out.println("Digite o estado do professor: ");
 				estado = leitorespaco.nextLine();
-				Professor professor = new Professor(nome,cpf,sexo,idade,endereco,cidade,estado);
+				int ministrandoAula = 0;
+				Professor professor = new Professor(nome,cpf,sexo,idade,endereco,cidade,estado, ministrandoAula);
 				professor.cadastrarProfessor();
 			break;
 			
-			case 14:
+			case 15:
 			//listarProfessor()	
 				professor = new Professor();
+				Verificavel p = professor;
 				System.out.println("Número de professores cadastrados: "+professor.obterQuantidade()+"\n");
 				ArrayList professores = professor.listar();
 				System.out.println("|------------ PROFESSORES ------------|");
@@ -394,12 +420,13 @@ public class Secretaria {
 					Professor aux = (Professor) professores.get(i);
 					System.out.println("  Nome = "+aux.getNome());
 					System.out.println("  Matricula = "+aux.getCpf());
+					p.verifica(aux.getMinistrandoAula());
 					System.out.println("|--------------------------------------|");
 				}
 				System.out.println("\n");
 			break;
 			
-			case 15:
+			case 16:
 			//alterarProfessor()
 				System.out.println("Digite o cpf do professor no qual deseja alterar os dados: ");
 				cpf = leitor.next();
@@ -437,7 +464,30 @@ public class Secretaria {
 					System.out.println("Professor "+cpf+" não encontrado!");
 			break;
 			
-			case 16:
+			case 17:
+				//alteraPresencaProfessor()
+					System.out.println("Digite o cpf do professor qual deseja alterar a presença:");
+					cpf = leitor.next();
+					professor = new Professor();
+					System.out.println("Professor a ser alterado:"); 
+					professor.buscar(cpf);
+					professor.mostrar(cpf);
+					if(professor.buscar(cpf)){
+						System.out.println("Digite:\n1-SE O PROFESSOR ESTIVER MINISRTANDO AULA\n" +
+								"0-SE O PROFESSOR ESTIVER AUSENTE");
+						ministrandoAula = leitor.nextInt();
+						professor.setMinistrandoAula(ministrandoAula);
+						professor.setCpf(cpf);
+						if (professor.alterarPresenca())
+							System.out.println("Alterado com sucesso!");
+						else
+							System.out.println("Erro na alteração!");
+					}
+				else
+					System.out.println("Professor "+cpf+" não encontrado!");
+			break;
+			
+			case 18:
 			//excluirProfessor()
 				System.out.println("Digite o cpf do professor que deseja excluir: ");
 				cpf = leitor.next();
@@ -452,7 +502,7 @@ public class Secretaria {
 					System.out.println("Professor "+cpf+" não encontrado!");
 			break;
 			
-			case 17:
+			case 19:
 			//cadastrarSala()
 				System.out.println("Digite o número da sala a ser cadastrada");
 				int numero = leitor.nextInt();
@@ -462,51 +512,48 @@ public class Secretaria {
 				sala.cadastrarSala();
 			break;
 			
-			case 18:
+			case 20:
 				//listarSala()	
 				sala = new Sala();
+				Verificavel s = sala;
 				ArrayList salas = sala.listar();
 				System.out.println("|------------ SALAS ------------|");
 				for (int i = 0; i < salas.size(); i++) {
 					Sala aux = (Sala) salas.get(i);
 					System.out.println("  Numero da Sala: "+aux.getNumero());
 					System.out.println("  Quantidade de cadeiras: "+aux.getQtdCadeiras());	
-					if (aux.getOcupada() == 1 )	
-						System.out.println("  EM AULA!");
-					
-					else
-						System.out.println("  DESOCUPADA!");
-					System.out.println("|--------------------------------------|");
+					s.verifica(aux.getOcupada());
+					System.out.println("|-------------------------------|");
 				}
 				System.out.println("\n");
 				break;
 				
-				case 19:
-				//alterarSala()
-					System.out.println("Digite o numero da sala no qual deseja alterar os dados: ");
-					numero = leitor.nextInt();
-					sala = new Sala();
-					System.out.println("Sala a ser alterado:"); 
-					sala.buscar(numero);
-					if (sala.buscar(numero)){
-						System.out.println("Digite a nova quantidade de cadeiras: ");
-						qtdCadeiras = leitorespaco.nextInt();
-						System.out.println("Digite a nova situacao de ocupacao da sala: (1- OCUPADA 0- DESOCUPADA)");
-						situacao = leitor.nextInt();
-						sala.setNumero(numero);
-						sala.setQtdCadeiras(qtdCadeiras);
-						sala.setNumero(numero);
-						if (sala.alterar())
-							System.out.println("Alterado com sucesso!");
-						else
-							System.out.println("Erro na alteração!");
-					}
+			case 21:
+			//alterarSala()
+				System.out.println("Digite o numero da sala no qual deseja alterar os dados: ");
+				numero = leitor.nextInt();
+				sala = new Sala();
+				System.out.println("Sala a ser alterado:"); 
+				sala.buscar(numero);
+				if (sala.buscar(numero)){
+					System.out.println("Digite a nova quantidade de cadeiras: ");
+					qtdCadeiras = leitorespaco.nextInt();
+					System.out.println("Digite a nova situacao de ocupacao da sala: (1- OCUPADA 0- DESOCUPADA)");
+					situacao = leitor.nextInt();
+					sala.setNumero(numero);
+					sala.setQtdCadeiras(qtdCadeiras);
+					sala.setOcupada(situacao);
+					if (sala.alterar())
+						System.out.println("Alterado com sucesso!");
 					else
-						System.out.println("Contratante "+numero+" não encontrado!");
-					break;	
+						System.out.println("Erro na alteração!");
+				}
+				else
+					System.out.println("Sala "+numero+" não encontrado!");
+			break;
 		}
 		
 		}
-		while(opcaoMenu != 20);
+		while(opcaoMenu != 21);
 	}
 }

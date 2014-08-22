@@ -1,12 +1,10 @@
 package br.edu.ifal.proo.projetofinal.model;
 
 import java.util.ArrayList;
-
 import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
 import br.edu.ifal.proo.projetofinal.dao.SalaDAO;
 
-public class Sala 
-{
+public class Sala implements Verificavel{
 	public int numero;
 	public int qtdCadeiras;
 	public int ocupada;
@@ -71,6 +69,16 @@ public class Sala
 
 	public void setOcupada(int ocupada) {
 		this.ocupada = ocupada;
+	}
+
+	@Override
+	public int verifica(int ocupada) {
+			if(ocupada == 1)
+				System.out.println("  EM AULA!");
+			else
+				System.out.println("  SALA DESOCUPADA!");
+			
+		return ocupada;
 	}
 	
 	

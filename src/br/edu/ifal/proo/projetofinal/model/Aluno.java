@@ -5,23 +5,24 @@ import java.util.ArrayList;
 import br.edu.ifal.proo.projetofinal.dao.AlunoDAO;
 import br.edu.ifal.proo.projetofinal.model.Boletim;
 
-public class Aluno extends Pessoa{
+public class Aluno extends Pessoa implements Verificavel{
 
 	private String matricula;
 	private int rg;
 	private String nivel;
-	private boolean assistindoAula = false;
+	private int presenca;
 	private Boletim boletim;
 	private String contratanteCpf;
 	
 	public Aluno(String nome, String cpf, String sexo, int idade,
 			String endereco, String cidade, String estado,
-			String matricula, int rg, String nivel,String contratanteCpf) {
+			String matricula, int rg, String nivel,String contratanteCpf, int presenca) {
 		super(nome, cpf, sexo, idade, endereco, cidade, estado);
 		this.matricula = matricula;
 		this.rg = rg;
 		this.nivel = nivel;
 		this.contratanteCpf = contratanteCpf;
+		this.presenca = presenca;
 	}
 	
 	public Aluno(){
@@ -70,11 +71,17 @@ public class Aluno extends Pessoa{
 		return dao.update(this);
 	}
 	
+	public boolean alterarPresenca(){
+		AlunoDAO dao = new AlunoDAO();
+		return dao.updatePresenca(this);
+	}
+	
 	public boolean excluir(String matricula){
 		AlunoDAO dao = new AlunoDAO();
 		return dao.delete(matricula);
 	}
 	
+	//getters and setters	
 	public String getMatricula() {
 		return matricula;
 	}
@@ -115,12 +122,22 @@ public class Aluno extends Pessoa{
 	public void setContratanteCpf(String contratanteCpf) {
 		this.contratanteCpf = contratanteCpf;
 	}
+	
+	public int getPresenca() {
+		return presenca;
+	}
 
-	public void assistirAula(){
-		if(assistindoAula == true)
-			System.out.println("Assistindo aula...");
+	public void setPresenca(int presenca) {
+		this.presenca = presenca;
+	}
+
+	@Override
+	public int verifica(int presenca) {
+		if(presenca == 1)
+			System.out.println("  Assistindo aula...");
 		else
-			System.out.println("O aluno ainda não chegou.");
+			System.out.println("  O aluno ainda não chegou.");
+		return presenca;
 	}	
 	
 	

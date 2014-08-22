@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import br.edu.ifal.proo.projetofinal.dao.ContratanteDAO;
 
-public class Contratante extends Pessoa {
+public class Contratante extends Pessoa implements Verificavel{
 
 	private int situacao;
 	
@@ -58,7 +58,18 @@ public class Contratante extends Pessoa {
 		ContratanteDAO dao = new ContratanteDAO();
 		return dao.delete(cpf);
 	}
-
+	
+	@Override
+	public int verifica(int situacao) {
+		if (situacao == 1 ){	
+			System.out.println("  Situação do pagamento: PAGO!");
+		}
+		else
+			System.out.println("  Situação do pagamento:  EM DÉBITO");
+		return situacao;
+	}
+	
+	//getters and setter
 	public int getSituacao() {
 		return situacao;
 	}
@@ -67,7 +78,5 @@ public class Contratante extends Pessoa {
 	public void setSituacao(int situacao) {
 		this.situacao = situacao;
 	}
-	
-	
 	
 }

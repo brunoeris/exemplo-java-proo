@@ -12,7 +12,7 @@ public class AlunoDAO {
 	
 	public void save(Aluno aluno){
 		String sql = "INSERT INTO aluno(nome,cpf,sexo,idade," +
-				"endereco,cidade,estado, matricula, identidade, nivel, cpfcontratante) VALUES ('"+aluno.getNome()+"','"+aluno.getCpf()+"','"+aluno.getSexo()+"',"+aluno.getIdade()+",'"+aluno.getEndereco()+"','"+aluno.getCidade()+"','"+aluno.getEstado()+"','"+aluno.getMatricula()+"','"+aluno.getRg()+"','"+aluno.getNivel()+"','"+aluno.getContratanteCpf()+"')";
+				"endereco,cidade,estado, matricula, identidade, nivel, cpfcontratante,presenca) VALUES ('"+aluno.getNome()+"','"+aluno.getCpf()+"','"+aluno.getSexo()+"',"+aluno.getIdade()+",'"+aluno.getEndereco()+"','"+aluno.getCidade()+"','"+aluno.getEstado()+"','"+aluno.getMatricula()+"','"+aluno.getRg()+"','"+aluno.getNivel()+"','"+aluno.getContratanteCpf()+"','"+aluno.getPresenca()+"')";
 		String sql1 = "INSERT INTO boletim (matriculab) VALUES('"+aluno.getMatricula()+"')";
 		System.out.println(sql);
 		ConexaoBD.executa(sql);
@@ -51,7 +51,9 @@ public class AlunoDAO {
 				int rg = resultado.getInt("identidade");
 				String nivel = resultado.getString("nivel");
 				String contratanteCpf = resultado.getString("cpfcontratante");
- 				Aluno aux = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel,contratanteCpf);
+				int presenca = resultado.getInt("presenca");
+ 				Aluno aux = new Aluno(nome, cpf, sexo, idade, endereco, cidade, estado, matricula, rg, nivel,contratanteCpf,presenca);
+ 				aux.setPresenca(presenca);
 				alunos.add(aux);
 			}
 		}catch (SQLException e) {
@@ -62,7 +64,13 @@ public class AlunoDAO {
 	}
 	
 	public boolean update(Aluno aluno){
-		String sql = "UPDATE aluno SET nome = '"+aluno.getNome()+"', sexo ='"+aluno.getSexo()+"', idade = '"+aluno.getIdade()+"', endereco ='"+aluno.getEndereco()+"', cidade ='"+aluno.getCidade()+ "', estado ='"+aluno.getEstado()+"', nivel='"+aluno.getNivel()+"', cpfcontratante='"+aluno.getContratanteCpf()+"' WHERE matricula = "+aluno.getMatricula();
+		String sql = "UPDATE aluno SET nome = '"+aluno.getNome()+"', sexo ='"+aluno.getSexo()+"', idade = '"+aluno.getIdade()+"', endereco ='"+aluno.getEndereco()+"', cidade ='"+aluno.getCidade()+ "', estado ='"+aluno.getEstado()+"', nivel='"+aluno.getNivel()+"', cpfcontratante='"+aluno.getContratanteCpf()+"', presenca='"+aluno.getPresenca()+"' WHERE matricula = "+aluno.getMatricula();
+		System.out.println(sql);
+		return ConexaoBD.executa(sql);
+	}
+	
+	public boolean updatePresenca(Aluno aluno){
+		String sql = "UPDATE aluno SET presenca = '"+aluno.getPresenca()+"' WHERE matricula = "+aluno.getMatricula();
 		System.out.println(sql);
 		return ConexaoBD.executa(sql);
 	}
@@ -94,6 +102,7 @@ public class AlunoDAO {
 				String estado = resultado.getString("estado");
 				int rg = resultado.getInt("identidade");
 				String nivel = resultado.getString("nivel");
+				int presenca = resultado.getInt("presenca");
 				String contratanteCpf = resultado.getString("cpfcontratante");
 				System.out.println("  Nome = "+nome);
 				System.out.println("  Matricula: "+matricula);
