@@ -39,6 +39,9 @@ public class Secretaria {
 			System.out.println("| 14- PARA LISTAR OS PORFESSORES                     |");
 			System.out.println("| 15- PARA ALTERAR UM PROFESSOR                      |");
 			System.out.println("| 16- PARA EXCLUIR UM PROFESSOR                      |");
+			System.out.println("| 17- PARA CADASTRAR UMA SALA                        |");
+			System.out.println("| 18- PARA LISTAR  SALAS                             |");
+			System.out.println("| 19- PARA ALTERAR O ESTADO DE UMA SALA              |");
 			System.out.println("| 20- PARA SAIR                                      |");
 			System.out.println("|----------------------------------------------------|");
 			
@@ -449,6 +452,58 @@ public class Secretaria {
 					System.out.println("Professor "+cpf+" não encontrado!");
 			break;
 			
+			case 17:
+			//cadastrarSala()
+				System.out.println("Digite o número da sala a ser cadastrada");
+				int numero = leitor.nextInt();
+				System.out.println("Especifique a quantidade de cadeiras que existem na sala: ");
+				int qtdCadeiras = leitor.nextInt();
+				Sala sala = new Sala(numero,qtdCadeiras);
+				sala.cadastrarSala();
+			break;
+			
+			case 18:
+				//listarSala()	
+				sala = new Sala();
+				ArrayList salas = sala.listar();
+				System.out.println("|------------ SALAS ------------|");
+				for (int i = 0; i < salas.size(); i++) {
+					Sala aux = (Sala) salas.get(i);
+					System.out.println("  Numero da Sala: "+aux.getNumero());
+					System.out.println("  Quantidade de cadeiras: "+aux.getQtdCadeiras());	
+					if (aux.getOcupada() == 1 )	
+						System.out.println("  EM AULA!");
+					
+					else
+						System.out.println("  DESOCUPADA!");
+					System.out.println("|--------------------------------------|");
+				}
+				System.out.println("\n");
+				break;
+				
+				case 19:
+				//alterarSala()
+					System.out.println("Digite o numero da sala no qual deseja alterar os dados: ");
+					numero = leitor.nextInt();
+					sala = new Sala();
+					System.out.println("Sala a ser alterado:"); 
+					sala.buscar(numero);
+					if (sala.buscar(numero)){
+						System.out.println("Digite a nova quantidade de cadeiras: ");
+						qtdCadeiras = leitorespaco.nextInt();
+						System.out.println("Digite a nova situacao de ocupacao da sala: (1- OCUPADA 0- DESOCUPADA)");
+						situacao = leitor.nextInt();
+						sala.setNumero(numero);
+						sala.setQtdCadeiras(qtdCadeiras);
+						sala.setNumero(numero);
+						if (sala.alterar())
+							System.out.println("Alterado com sucesso!");
+						else
+							System.out.println("Erro na alteração!");
+					}
+					else
+						System.out.println("Contratante "+numero+" não encontrado!");
+					break;	
 		}
 		
 		}
