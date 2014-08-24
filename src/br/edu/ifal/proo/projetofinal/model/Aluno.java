@@ -138,7 +138,6 @@ public class Aluno extends Pessoa implements Verificavel{
 		else
 			System.out.println("  O aluno ainda não chegou.");
 		return presenca;
-	}	
-	
+	}
 	
 }

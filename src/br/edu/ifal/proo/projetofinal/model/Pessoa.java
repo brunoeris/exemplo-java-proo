@@ -1,6 +1,6 @@
 package br.edu.ifal.proo.projetofinal.model;
 
-public class Pessoa {
+public abstract class Pessoa {
 
 	protected String nome;
 	protected String cpf;
@@ -23,7 +23,6 @@ public class Pessoa {
 	
 	public Pessoa() {
 	}
-
 	
 	//getters and setters
 
