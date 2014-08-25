@@ -605,12 +605,13 @@ public class Secretaria {
 							//alterarAvaliacao()
 								System.out.println(" ===== ALTERAR DADOS DE UMA AVALIAÇÃO ==== ");
 								System.out.println("Digite o código da avaliacao no qual deseja alterar os dados: ");
-								codigo = leitor.next();
+								String cod = "'"+leitor.next()+"'";
 								avaliacao = new Avaliacao();
+								av = avaliacao;
 								System.out.println("Avaliacão a ser alterada:");
-								avaliacao.buscar(codigo);
-								avaliacao.mostrar(codigo);
-								if (avaliacao.buscar(codigo)){
+								avaliacao = avaliacao.buscarEListar(cod);
+								av.verifica(avaliacao.getSituacao());
+								if (avaliacao.buscar(cod)){
 									System.out.println("Digite a nova data da avaliação: ");
 									data = leitor.next();
 									System.out.println("Digite o novo nome da prova (EX: PRIMEIRA PROVA ESCRITA, SEGUNDA PROVA ORAL): ");
@@ -618,32 +619,38 @@ public class Secretaria {
 									System.out.println("Digite o nivel correto da avaliacao: ");
 									nivel = leitorespaco.nextLine();
 									avaliacao.setData(data);
-									avaliacao.setCodigo(codigo);
+									avaliacao.setData(data);
+									avaliacao.setNomeDaProva(nome);
+									avaliacao.setNivel(nivel);
+									avaliacao.setCodigo(cod);
 									if (avaliacao.alterar())
 										System.out.println("Alterado com sucesso!");
 									else
 										System.out.println("Erro na alteração!");
 								}
 									else
-										System.out.println("Avaliacao "+codigo+" não encontrada!");
+										System.out.println("Avaliação "+cod+" não encontrada!");
 							break;
 								
 							case 9:
 								//alteraSituaçãoAvaliacao()
 									System.out.println(" ===== ALTERAR A SITUAÇÃO DE UMA AVALIAÇÃO ==== ");
 									System.out.println("Digite o código da avaliação na qual deseja alterar a situação:");
-									codigo = leitor.next();
+									codigo = "'"+leitor.next()+"'";
 									avaliacao = new Avaliacao();
+									av = avaliacao;
 									System.out.println("Avaliacao a ser alterada:"); 
 									avaliacao.buscar(codigo);
-									avaliacao.mostrar(codigo);
+									//avaliacao.buscarEListar(codigo);
+									avaliacao = avaliacao.buscarEListar(codigo);
+									av.verifica(avaliacao.getSituacao());
 									if(avaliacao.buscar(codigo)){
 										System.out.println("Digite:\n1-SE O A AVALIAÇÃO ESTIVER SENDO APLICADA\n" +
 												"0-SE O PROFESSOR ESTIVER FINALIZADA");
 										situacao = leitor.nextInt();
 										avaliacao.setSituacao(situacao);
 										avaliacao.setCodigo(codigo);
-										if (avaliacao.alterar())
+										if (avaliacao.alterarSituacao())
 											System.out.println("Alterado com sucesso!");
 										else
 											System.out.println("Erro na alteração!");

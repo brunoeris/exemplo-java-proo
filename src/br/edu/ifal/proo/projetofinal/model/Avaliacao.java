@@ -50,9 +50,19 @@ public class Avaliacao implements Verificavel{
 		return dao.update(this);
 	}
 	
+	public boolean alterarSituacao(){
+		AvaliacaoDAO dao = new AvaliacaoDAO();
+		return dao.updateSituacao(this);
+	}
+	
 	public boolean buscar(String codigo){
 		AvaliacaoDAO dao = new AvaliacaoDAO();
 		return dao.find(codigo);
+	}
+	
+	public Avaliacao buscarEListar(String codigo){
+		AvaliacaoDAO dao = new AvaliacaoDAO();
+		return dao.findAndList(codigo);
 	}
 	
 	public boolean mostrar(String cpfAplicador){
