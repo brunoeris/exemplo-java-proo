@@ -1,15 +1,13 @@
 curso-de-inglês-java-oo
 =================
 
-Exemplo para iniciação de um repositório de java.
-
-1	NOME DO SISTEMA
+1	SISTEMA
 
 Curso de Inglês
 
-2	OBJETIVO
+2	PROJETO
 
-Respaldado no conteúdo em sala, pesquisas e conhecimento da equipe, temos como objetivo o desenvolvimento do Projeto Curso de Inglês, onde apresentaremos funções de gerenciamento e usabilidade do mesmo.
+Temos como objetivo o desenvolvimento do Projeto Curso de Inglês, onde apresentamos funções de gerenciamento e usabilidade do mesmo usando JAVA e OO.
 
 3	ESCOPO PRELIMINAR
 
