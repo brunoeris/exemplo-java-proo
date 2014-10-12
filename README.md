@@ -1,4 +1,4 @@
-exemplo-java-proo
+curso-de-inglês-java-oo
 =================
 
 Exemplo para iniciação de um repositório de java.
