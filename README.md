@@ -21,7 +21,9 @@ Temos como objetivo o desenvolvimento do Projeto Curso de Inglês, onde apresent
 
 4 CONTRIBUIDORES
 
-BRUNO ERIS, brunoeriss@gmail.com
-HERCILIO JUNIOR, hercilio.master@gmail.com 
-OTACÍLIO NETO, otacilioluxas@gmail.com 
+BRUNO ERIS - brunoeriss@gmail.com
+
+HERCILIO JUNIOR - hercilio.master@gmail.com 
+
+OTACÍLIO NETO - otacilioluxas@gmail.com 
 
